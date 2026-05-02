@@ -1,0 +1,25 @@
+# Deployment & Backup ZIPs
+*.zip
+
+# Large image assets (not code)
+AOI画像/
+
+# Personal notes
+AOiメモ/
+
+# ECC local settings
+ecc-instinct-snapshot.txt
+.claude/settings.local.json
+.claude/bash-commands.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Playwright MCP artifacts
+.playwright-mcp/

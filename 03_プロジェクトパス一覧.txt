@@ -1,0 +1,111 @@
+================================================================
+AOIbase プロジェクト パス一覧
+更新日: 2026-04-15
+================================================================
+
+■ ローカル開発ファイル
+================================================================
+
+テーマディレクトリ:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase-theme\
+
+テーマファイル:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\style.css
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\functions.php
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\front-page.php
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\page-contact.php  (お問い合わせページテンプレート)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\index.php
+
+JavaScript:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\js\main.js
+
+画像ファイル:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\835863eb-fcab-49ba-81d6-d180e50d4dea.png  (ヒーロー1: カフェ風オフィス)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\c41bb55f-c4a0-4996-8e36-148fff08b92b.png  (ヒーロー2 + COMPANY背景)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\c45bf5de-46cc-42b5-88e3-54b9f5c4bbeb.png  (ヒーローから削除済み、ファイル残存)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\c529f71b-6f05-42cf-a17f-65eff9ba6095.png  (未使用)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\illustration-1.png
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\illustration-2.png
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\illustration-3.png
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\illustration-4.png  (FEATURE セクション)
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\illustration-5.png
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme\assets\images\logo.png
+
+ZIP ファイル:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-theme.zip  (最新デプロイ済みZIP)
+
+元HTML:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\aoibase-top.html  (変換元HTMLファイル)
+
+元画像フォルダ:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\AOI画像\  (日本語ファイル名の元画像)
+
+引継ぎドキュメント:
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\01_開発引継ぎシート.txt
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\02_メモリ内容フルコピー.txt
+  C:\Users\takut\OneDrive\デスクトップ\aoibase HP\03_プロジェクトパス一覧.txt
+
+================================================================
+
+■ サーバー側（Xserver）
+================================================================
+
+WordPress ルート:
+  /home/aoibase/aoibase.jp/public_html/
+
+テーマディレクトリ（サーバー上）:
+  /home/aoibase/aoibase.jp/public_html/wp-content/themes/aoibase-theme/
+
+※ 前回は「aoibase-theme-1」だったが、旧テーマ削除後の再アップロードで
+   正しく「aoibase-theme」になった
+
+================================================================
+
+■ Claude Code 設定ファイル
+================================================================
+
+グローバル設定:
+  C:\Users\takut\.claude\CLAUDE.md
+  C:\Users\takut\.claude\settings.json
+
+プロジェクトメモリ:
+  C:\Users\takut\.claude\projects\C--Users-takut\memory\
+  ※ MEMORY.md は現在存在しない
+
+================================================================
+
+■ 本番サイト URL
+================================================================
+
+サイト: https://aoibase.jp/
+お問い合わせ: https://aoibase.jp/contact/
+管理画面: https://aoibase.jp/wp-admin/
+  ※ CloudSecure WP Security でログインURL変更の可能性あり
+
+================================================================
+
+■ WordPress 固定ページ
+================================================================
+
+お問い合わせ:
+  ID: 15
+  スラッグ: contact
+  URL: https://aoibase.jp/contact/
+  テンプレート: page-contact.php (自動適用)
+
+================================================================
+
+■ 開発ツール
+================================================================
+
+Python (ZIP作成用):
+  /c/Users/takut/AppData/Local/Programs/Python/Python312/python
+  ※ python3 コマンドは Windows Store スタブのため使用不可
+
+Playwright MCP:
+  ブラウザ自動操作（WordPress管理画面操作・スクリーンショット取得に使用）
+  デプロイ手順の自動化に活用
+
+UI/UX Pro Max スキル:
+  C:\Users\takut\.claude\skills\ui-ux-pro-max\
+  デザインシステム生成・UXガイドライン参照に使用
