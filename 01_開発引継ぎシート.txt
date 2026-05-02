@@ -1,6 +1,6 @@
 ================================================================
 AOIbase WordPress サイト開発 引継ぎシート
-更新日: 2026-04-15
+更新日: 2026-05-03
 ================================================================
 
 ■ プロジェクト概要
@@ -11,11 +11,12 @@ AOIbase WordPress サイト開発 引継ぎシート
 - 所在地: 〒761-8046 香川県高松市川部町240番地4 アースA203
 - メール: info@aoibase.jp
 - WordPress 6.9.4 / Xserver ホスティング
-- カスタムテーマ「AOIbase Theme」で構築
+- カスタムテーマ「AOi Base Theme」v2.2.0 で構築
+- GitHub: https://github.com/bun3111/aoibase-hp.git (master)
 
 ■ デザイン方針
 - infofarm.co.jp のデザインパターンを参考
-- ブランドカラー: ダークネイビー #1B2A4A
+- ブランドカラー: ダークネイビー #1B2A4A / アクセント #0369A1
 - キャッチコピー: 「構想を、動くプロダクトへ。」
 - フォント: Poppins (400-800) + Noto Sans JP (400-700)
 - スタイリング: Tailwind CSS CDN
@@ -55,47 +56,123 @@ AOIbase WordPress サイト開発 引継ぎシート
   - WordPress管理画面から削除失敗 → Xserverファイルマネージャで直接削除
 - 会社名を「株式会社AOi base」に変更（COMPANYセクション + フッター 2箇所）
 - 事業内容に「広告代理」追加
-- COMPANY セクションに会社情報テーブル追加:
-  - 会社名 / 所在地 / 設立(2026年4月15日) / 代表者 / 事業内容 / メール
+- COMPANY セクションに会社情報テーブル追加
 - フッターの住所情報更新
 - お問い合わせページ作成:
   - Contact Form 7 フォーム設定（送信先: info@aoibase.jp）
-  - フィールド: 会社名 / お名前* / メールアドレス* / 電話番号 / 件名* / お問い合わせ内容*
-  - page-contact.php テンプレート作成（サイトデザイン統一）
+  - page-contact.php テンプレート作成
   - 固定ページ「お問い合わせ」(ID:15, スラッグ:contact) 公開
-  - URL: https://aoibase.jp/contact/
-- トップページの「無料相談」リンク6箇所を /contact/ に変更:
-  - ナビ「お問い合わせ」×2 / 「無料で相談する」ボタン
-  - BOTTOM CTA / フッター「無料相談はこちら」 / サイドCTA
+- トップページの「無料相談」リンク6箇所を /contact/ に変更
 - ヒーロースライダー変更:
-  - 高さ: 100svh → 50svh（半分に縮小）
-  - Bottom band: 10rem → 5rem に縮小、テキストサイズも縮小
-  - 画像表示位置: object-bottom（下半分を表示）
-  - 3枚目スライド（ミーティング写真 c45bf5de）を削除 → 2枚スライドに
-  - ドット3→2、カウンター03→02 に更新
-- テーマ名は「aoibase-theme」で正常インストール（旧残骸なし）
+  - 高さ: 100svh → 50svh / Bottom band: 10rem → 5rem
+  - 3枚目スライド削除 → 2枚スライドに
+
+【セッション4】下層ページ作成 & 実績機能 & v2.0.0（2026-04-〜05）
+- 下層ページ群の作成:
+  - page-company.php（会社概要）
+  - page-flow.php（開発の流れ）
+  - page-news.php（ニュース一覧）
+  - page-operability.php（操作性ページ）
+  - page-security.php（セキュリティページ）
+- カスタム投稿タイプ「実績（achievement）」実装:
+  - inc/cpt-achievement.php: CPT登録 + カスタムフィールド
+  - archive-achievement.php: 実績一覧テンプレート
+  - single-achievement.php: 実績詳細テンプレート
+- カスタムフィールド:
+  - aoibase_period / aoibase_client_name / aoibase_project_url
+  - aoibase_summary / aoibase_challenge / aoibase_solution / aoibase_outcome
+  - aoibase_outcome_metric / aoibase_gallery_ids / aoibase_is_featured
+- v2.0.0 としてデプロイ
+
+【セッション5】v2.1.0〜v2.2.0 大規模UI改修（2026-05-03）
+- WordPress管理画面で実績投稿のコンテンツ編集（Playwright MCP使用）:
+  - 投稿73（アースライフ）: タイトル→様追加、課題/解決/成果テキスト、
+    アイキャッチをmockup-v2.pngに変更、最下部画像(file_dl.png)削除
+  - 投稿62（トランプ）: タイトル→トランプゲームアプリ、課題/解決/成果テキスト
+  - 投稿41（AI）: 課題/解決/成果テキスト
+  - 投稿56（口コミ）: 課題/解決/成果テキスト、URL削除、
+    アイキャッチ・ギャラリー画像を新規アップロード分に差替え
+    gallery_ids = 98,100,101,102,103,104,105,106
+- テンプレート変更（v2.1.0）:
+  - 全テンプレート: 「開発実績」→「事例」に統一
+  - front-page.php: SHAREセクション削除、PERIODセクション削除
+  - front-page.php: フッターを横並びレイアウトに変更
+  - page-flow.php: ステップ番号色修正(#EFF6FF→#BFDBFE)、テスト・納品→テスト・デプロイ
+  - front-page.php: WORKSカード画像をアイキャッチ画像に差替え
+- UI改修（v2.2.0）:
+  - front-page.php: SERVICEセクション横スクロールアニメーション廃止
+    → CSS Grid 3列（PC）/ 1列（モバイル）に変更
+  - front-page.php: SERVICEカード構造変更
+    → アイコン44x44をタイトル左に配置、MOREボタン削除
+  - front-page.php: WORKSカード画像をpost thumbnail URLで動的表示
+    → get_the_post_thumbnail_url(41/73, 'large')
+  - front-page.php: 「earthlife HP」→「株式会社アースライフ様HP」
+  - archive-achievement.php: モバイルカードUIをPC版と同構造に修正
+    → rem単位、!important排除
+  - single-achievement.php: モバイル課題/解決/成果をコンパクトカード化
+    → 「詳しくみる」ボタンでモーダル全文表示
+    → PC版は従来の3カラムレイアウトを維持（hidden md:grid）
+  - main.js: openDetailModal() / closeDetailModal() 追加
+- v2.2.0 としてデプロイ完了
 
 ================================================================
 ■ 現在のテーマファイル構成
 ================================================================
 
-aoibase-theme/
-├── style.css           テーマヘッダー (v1.0.0)
-├── functions.php       テーマセットアップ、アセット読み込み、絵文字無効化、wp_head整理
-├── front-page.php      トップページテンプレート
-├── page-contact.php    お問い合わせページテンプレート（CF7埋め込み）
-├── index.php           フォールバック（front-page.php読み込み）
+aoibase-theme/                          v2.2.0
+├── style.css                           テーマヘッダー
+├── functions.php                       テーマセットアップ、アセット読み込み
+├── front-page.php                      トップページ
+│   ├── NAV（固定ヘッダー + モバイルメニュー）
+│   ├── HERO SLIDER（2枚、自動再生）
+│   ├── NEWS TICKER
+│   ├── FEATURE（数値カウンター付き）
+│   ├── MARQUEE
+│   ├── SERVICE（CSS Grid 3列、アイコン+テキストカード×6）
+│   ├── PROCESS（5ステップ）
+│   ├── FLOW（クライアントロゴ横スクロール）
+│   ├── WORKS（2カード、投稿アイキャッチ画像表示）
+│   ├── BOTTOM CTA BAR
+│   └── FOOTER（横並びレイアウト）
+├── page-contact.php                    お問い合わせ（CF7埋め込み）
+├── page-company.php                    会社概要
+├── page-flow.php                       開発の流れ（5ステップ詳細）
+├── page-news.php                       ニュース一覧
+├── page-operability.php                操作性ページ
+├── page-security.php                   セキュリティページ
+├── archive-achievement.php             実績一覧（2列グリッド、モバイル対応）
+├── single-achievement.php              実績詳細
+│   ├── ヘッダー情報（期間/クライアント/URL）
+│   ├── 課題/解決/成果セクション
+│   │   ├── モバイル: コンパクトカード + モーダルポップアップ
+│   │   └── PC: 3カラムカード
+│   └── ギャラリー + アイキャッチ画像
+├── index.php                           フォールバック
+├── inc/
+│   └── cpt-achievement.php             カスタム投稿タイプ「実績」+ メタボックス
 ├── assets/
 │   ├── js/
-│   │   └── main.js     IIFE、ナビスクロール、モバイルメニュー、ヒーロースライダー（動的スライド数対応）、
-│   │                   ティッカー、WORKSフィルター、サイドCTA、スムーススクロール
+│   │   └── main.js                     ナビ/スライダー/ティッカー/カウンター/
+│   │                                   モーダル(openDetailModal/closeDetailModal)/
+│   │                                   フェードイン/スクロール
 │   └── images/
-│       ├── 835863eb-...png  ヒーロー1: カフェ風オフィス
-│       ├── c41bb55f-...png  ヒーロー2 + COMPANY背景
-│       ├── c45bf5de-...png  ※ヒーローから削除済み（ファイルは残存）
-│       ├── c529f71b-...png  未使用
-│       ├── illustration-1〜5.png  各セクション用イラスト
-│       └── logo.png
+│       ├── logo-aoi.png                ロゴ
+│       ├── 835863eb-...png             ヒーロー1: カフェ風オフィス
+│       ├── c41bb55f-...png             ヒーロー2 + COMPANY背景
+│       ├── illustration-1〜5.png       各セクション用イラスト
+│       └── achievements/
+│           └── kuchikomi/              口コミ実績ギャラリー画像（8枚）
+
+================================================================
+■ WordPress投稿データ（実績 CPT）
+================================================================
+
+投稿ID | タイトル                     | スラッグ          | 備考
+-------|------------------------------|-------------------|-----
+41     | AIらくらくオーダーメイド       | ai-order          | is_featured=1
+73     | 株式会社アースライフ様         | earthlife         | is_featured=1, URL=earthlife.co.jp
+62     | トランプゲームアプリ           | trump-game        |
+56     | 口コミサイト                   | kuchikomi         | gallery_ids=98,100-106
 
 ================================================================
 ■ Contact Form 7 設定
@@ -127,40 +204,28 @@ aoibase-theme/
    - OGP 画像の設定
 
 3. 画像の最適化
-   - 現在 PNG のまま（合計約 8.9MB）
+   - 現在 PNG のまま
    - WebP 変換 + srcset 設定推奨
    - 未使用画像の削除 (c529f71b, c45bf5de)
 
 【中】推奨
-4. リンク先の実装
-   - SERVICE カードの MORE リンク（全て # のまま）
-   - WORKS カードのリンク
-   - フッターのプライバシーポリシー / サイトマップ
-   - 「資料をダウンロード」リンク
-
-5. 検索エンジンインデックス有効化
+4. 検索エンジンインデックス有効化
    - 現在 noindex 設定済み（開発中のため）
    - 公開準備完了後に有効化する
 
+5. フッターのプライバシーポリシー / サイトマップリンク実装
+
+6. 実績投稿の追加・拡充
+   - 各実績のギャラリー画像充実
+   - 新規実績の追加
+
 【低】将来対応
-6. 下層ページの作成
-   - サービス詳細ページ
-   - 事例詳細ページ
-   - 会社概要ページ
-   - プライバシーポリシーページ
-
-7. ニュース機能の WordPress 投稿連携
-   - 現在ハードコードされたダミーデータ
-   - WordPress の投稿をティッカーに動的表示する機能
-
-8. パフォーマンス改善
-   - フォント読み込みの最適化（font-display: swap は設定済み）
-   - 画像の lazy loading
+7. パフォーマンス改善
+   - フォント読み込みの最適化
    - Critical CSS の抽出
+   - 画像の lazy loading 最適化
 
-9. ヒーロースライダーの3枚目追加検討
-   - 現在2枚（カフェ風オフィス + ワーキングスペース）
-   - 必要に応じて新しい画像で3枚目を追加
+8. ヒーロースライダーの3枚目追加検討
 
 ================================================================
 ■ 技術スタック
@@ -173,38 +238,64 @@ aoibase-theme/
 - Vanilla JavaScript (ES6)
 - Xserver ホスティング（Linux環境）
 - プラグイン: Contact Form 7, Yoast SEO, CloudSecure WP Security
-
-================================================================
-■ WordPress 管理画面
-================================================================
-
-- ログイン URL: CloudSecure WP Security でカスタム化されている可能性あり
-- テーマ: AOIbase Theme (ディレクトリ名: aoibase-theme)
-- 表示設定: 「最新の投稿」がホームページに設定
-- 固定ページ: 「お問い合わせ」(ID:15, スラッグ:contact)
-- 検索エンジンインデックス: 無効化済み
+- バージョン管理: GitHub (bun3111/aoibase-hp)
 
 ================================================================
 ■ デプロイ手順
 ================================================================
 
 1. ローカルでテーマファイルを編集
-2. Python zipfile で ZIP 作成（フォワードスラッシュ必須）
-   Python パス: /c/Users/takut/AppData/Local/Programs/Python/Python312/python
+2. Python zipfile で ZIP 作成
+   - Windows: /c/Users/takut/AppData/Local/Programs/Python/Python312/python
+   - Mac: python3 が使用可能
 3. WordPress 管理画面 > 外観 > テーマ
 4. Twenty Twenty-Five に切替
 5. aoibase-theme を削除
 6. 新 ZIP をアップロード → インストール → 有効化
 
 ※ アクティブテーマのまま上書きアップロードは不可
-※ python3 コマンドは Windows Store スタブのため使用不可
+※ ZIP 作成時は Python zipfile を使用（PowerShell は構造が壊れる）
+※ 画像ファイル名は ASCII のみ使用（日本語名は Linux で問題を起こす）
+
+================================================================
+■ WordPress 管理画面
+================================================================
+
+- サイトURL: https://aoibase.jp/
+- ログイン URL: CloudSecure WP Security でカスタム化されている可能性あり
+- テーマ: AOi Base Theme v2.2.0 (ディレクトリ名: aoibase-theme)
+- 表示設定: 「最新の投稿」がホームページに設定
+- 固定ページ: 「お問い合わせ」(ID:15, スラッグ:contact)
+
+================================================================
+■ 開発環境の切替（Windows ↔ Mac）
+================================================================
+
+1. GitHub からクローン:
+   git clone https://github.com/bun3111/aoibase-hp.git
+
+2. テーマディレクトリ: aoibase-hp/aoibase-theme/
+
+3. デプロイ時のZIP作成:
+   python3 -c "
+   import zipfile, os
+   theme_dir = 'aoibase-theme'
+   with zipfile.ZipFile('aoibase-theme.zip', 'w', zipfile.ZIP_DEFLATED) as zf:
+       for root, dirs, files in os.walk(theme_dir):
+           for f in files:
+               full = os.path.join(root, f)
+               zf.write(full)
+   "
+
+4. CLAUDE.md / .claude/ ディレクトリはリポジトリ外
+   → Mac側でも同様のCLAUDE.mdを設置する
 
 ================================================================
 ■ 注意事項
 ================================================================
 
-- ZIP 作成時は必ず Python zipfile を使用（PowerShell 不可）
-- 画像ファイル名は ASCII のみ使用（日本語名は Linux で問題を起こす）
-- テーマ更新時は必ず別テーマに切替→削除→再アップロードの手順
+- Playwright MCP でWordPress管理画面操作可能（コンテンツ編集、画像アップロード等）
+- Gutenberg API: wp.data.dispatch('core/editor').editPost() でタイトル/コンテンツ変更
+- メタボックス: document.getElementById('aoibase_xxx').value で直接DOM操作
 - CF7フォームはWordPress管理画面で設定済み（テーマファイルにはショートコードのみ）
-- main.js はスライド数を動的取得（slides.length）するため、HTML側のスライド増減だけでOK
+- main.js はスライド数を動的取得するため、HTML側の増減だけでOK
