@@ -67,9 +67,9 @@ function aoibase_meta_auth( ...$args ) {
  */
 function aoibase_register_achievement_cpt() {
 	$labels = array(
-		'name'               => '開発実績',
-		'singular_name'      => '開発実績',
-		'menu_name'          => '開発実績',
+		'name'               => '事例',
+		'singular_name'      => '事例',
+		'menu_name'          => '事例',
 		'all_items'          => '実績一覧',
 		'add_new'            => '新規追加',
 		'add_new_item'       => '新しい実績を追加',

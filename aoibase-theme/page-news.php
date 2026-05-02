@@ -192,7 +192,7 @@ $news_query = new WP_Query( array(
     <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo esc_url(home_url('/achievements/')); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">開発実績</p></div>
+    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">事例</p></div>
     <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">

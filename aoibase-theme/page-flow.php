@@ -100,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Step 01 -->
     <div class="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 mb-20">
       <div class="md:text-right">
-        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#EFF6FF] leading-none select-none mb-2">01</span>
+        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#BFDBFE] leading-none select-none mb-2">01</span>
         <h3 class="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4">ヒアリング</h3>
         <p class="text-sm text-[#475569] leading-loose">課題や目的を明確化するため、現状の業務フローやボトルネック、数値目標、ユーザー属性など、丁寧にお伺いいたします。既存システムについては運用状況について、使用ツール構成やデータの流れ、分断箇所、権限管理などの課題を整理いたします。ヒヤリングはもちろんオンラインにも対応し、画面共有などを通じて実運用ベースで把握いたします。</p>
       </div>
@@ -131,7 +131,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Step 02 -->
     <div class="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 mb-20">
       <div class="md:text-right md:order-3">
-        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#EFF6FF] leading-none select-none mb-2">02</span>
+        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#BFDBFE] leading-none select-none mb-2">02</span>
         <h3 class="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4">要件定義・設計</h3>
         <p class="text-sm text-[#475569] leading-loose">ヒアリング内容をもとに、画面設計・システム構成・技術選定を行います。ワイヤーフレームや要件定義書をご提示し、認識のズレがないよう確認します。</p>
       </div>
@@ -162,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Step 03 -->
     <div class="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 mb-20">
       <div class="md:text-right">
-        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#EFF6FF] leading-none select-none mb-2">03</span>
+        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#BFDBFE] leading-none select-none mb-2">03</span>
         <h3 class="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4">開発・実装</h3>
         <p class="text-sm text-[#475569] leading-loose">開発開始後、定期的に進捗を共有し、方向性のズレを早期に解消します。品質を担保するコードレビュー・テストを徹底。</p>
       </div>
@@ -193,8 +193,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Step 04 -->
     <div class="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 mb-20">
       <div class="md:text-right md:order-3">
-        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#EFF6FF] leading-none select-none mb-2">04</span>
-        <h3 class="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4">テスト・納品</h3>
+        <span class="inline-block font-['Poppins'] text-5xl md:text-6xl font-extrabold text-[#BFDBFE] leading-none select-none mb-2">04</span>
+        <h3 class="text-xl md:text-2xl font-bold text-[#1B2A4A] mb-4">テスト・デプロイ</h3>
         <p class="text-sm text-[#475569] leading-loose">機能テスト・パフォーマンステスト・セキュリティチェックを実施。お客様による受入テストを経て、本番環境へデプロイします。</p>
       </div>
       <div class="hidden md:flex flex-col items-center md:order-2">
@@ -263,7 +263,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo esc_url(home_url('/achievements/')); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">開発実績</p></div>
+    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">事例</p></div>
     <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">

@@ -55,19 +55,8 @@
     .marquee-item.accent { -webkit-text-stroke: 1.5px rgba(202,138,4,0.45); }
     .marquee-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: rgba(3,105,161,0.6); margin: 0 12px; vertical-align: middle; flex-shrink: 0; }
 
-    @keyframes serviceScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .service-track {
-      display: flex;
-      gap: 24px;
-      animation: serviceScroll 23s linear infinite;
-      width: max-content;
-    }
-    .service-track:hover { animation-play-state: paused; }
-    .service-track .service-card { flex: 0 0 300px; max-width: 300px; }
-    @media (prefers-reduced-motion: reduce) { .service-track, .flow-track { animation: none !important; } }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (prefers-reduced-motion: reduce) { .flow-track { animation: none !important; } }
     @keyframes flowScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -81,8 +70,8 @@
     .flow-track:hover { animation-play-state: paused; }
     .flow-track .flow-item { flex: 0 0 160px; max-width: 160px; }
     @media (max-width: 1024px) { .feature-grid { grid-template-columns: 1fr !important; } }
+    @media (max-width: 767px) { .service-grid { grid-template-columns: 1fr !important; } }
     @media (max-width: 640px) {
-      .service-track .service-card { flex: 0 0 240px !important; max-width: 240px !important; }
       .feature-grid img { max-height: 240px !important; }
       .feature-grid > div:first-child > div:first-child { width: 200px !important; height: 200px !important; top: -15px !important; left: -15px !important; }
       .feature-grid > div:first-child > div:nth-child(2) { width: 100px !important; height: 100px !important; }
@@ -93,18 +82,6 @@
       #company dl > div > dt { width: 5rem !important; font-size: 11px !important; }
       #company dl > div > dd { font-size: 12px !important; }
       #company h2 { font-size: 22px !important; }
-
-      /* === SERVICE card aspect 3:4 (mobile) === */
-      .service-card { aspect-ratio: 3 / 4; }
-      .service-card > div:first-child { height: 38% !important; }
-      .service-card .card-icon-bg { width: 40px !important; height: 40px !important; border-radius: 10px !important; }
-      .service-card .card-icon-bg svg { width: 20px !important; height: 20px !important; }
-      .service-card > div:nth-child(2) { padding: 12px !important; }
-      .service-card > div:nth-child(2) > div:first-child { font-size: 8px !important; margin-bottom: 4px !important; letter-spacing: 0.1em !important; }
-      .service-card h3 { font-size: 13px !important; margin: 0 0 4px !important; line-height: 1.3 !important; }
-      .service-card p { font-size: 10px !important; line-height: 1.5 !important; margin: 0 0 8px !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .service-card .card-more { font-size: 9px !important; padding-top: 8px !important; }
-      .service-card .card-more svg { width: 10px !important; height: 10px !important; }
 
       /* === Top WORKS card aspect 3:4 + simplified (mobile) === */
       #works-grid .works-card { aspect-ratio: 3 / 4; display: flex; flex-direction: column; }
@@ -117,14 +94,12 @@
     }
 
     .service-card {
-      background: #fff; border: 1px solid #E2E8F0; border-radius: 12px;
-      overflow: hidden; transition: transform 200ms ease, box-shadow 200ms ease;
-      cursor: pointer; display: flex; flex-direction: column;
+      background: #fff; border: 1px solid #F1F5F9; border-radius: 16px;
+      padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column;
+      transition: transform 200ms ease, box-shadow 200ms ease;
     }
     .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(3,105,161,0.12); border-color: #BFDBFE; }
-    .service-card:hover .card-icon-bg { background: #0369A1; }
-    .service-card:hover .card-icon-bg svg { stroke: #fff; }
-    .service-card:hover .card-more { color: #0369A1; }
     .aoibase-fade-in { opacity: 0; transform: translateY(16px); transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
     .aoibase-fade-in-visible { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) { .aoibase-fade-in { opacity: 1; transform: none; transition: none; } }
@@ -329,71 +304,85 @@
       <h2 style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#0F172A;line-height:1.6;margin:0;">お客様の課題に、複数のサービスを<br>組み合わせながら、トータルで解決します</h2>
     </div>
   </div>
-  <div style="overflow:hidden;width:100%;padding:0 0 20px;">
-    <div class="service-track">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="service-grid">
       <!-- Card 1 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-          <div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#EFF6FF;border:2px solid #BFDBFE;display:flex;align-items:center;justify-content:center;transition:background 200ms;position:relative;z-index:1;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0369A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#EFF6FF;border:1px solid #BFDBFE;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0369A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">WEB PRODUCTION</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">Webサイト制作</h3>
           </div>
         </div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">WEB PRODUCTION</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">Webサイト制作</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">コーポレートサイト・LP・採用サイトなど、高品質なWebサイトを設計・制作します。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">コーポレートサイト・LP・採用サイトなど、高品質なWebサイトを設計・制作します。</p>
       </div>
       <!-- Card 2 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);height:180px;display:flex;align-items:center;justify-content:center;"><div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#F0FDF4;border:2px solid #BBF7D0;display:flex;align-items:center;justify-content:center;transition:background 200ms;z-index:1;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div></div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">WEB APP</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">Webアプリ開発</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">SaaS・社内ポータル・予約管理など高機能Webアプリを構築します。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">WEB APP</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">Webアプリ開発</h3>
+          </div>
         </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">SaaS・社内ポータル・予約管理など高機能Webアプリを構築します。</p>
       </div>
       <!-- Card 3 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);height:180px;display:flex;align-items:center;justify-content:center;"><div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#F5F3FF;border:2px solid #DDD6FE;display:flex;align-items:center;justify-content:center;transition:background 200ms;z-index:1;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div></div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">MOBILE APP</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">モバイルアプリ開発</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">iOS / Androidネイティブ・クロスプラットフォーム対応。ストア申請まで一貫サポート。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#F5F3FF;border:1px solid #DDD6FE;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">MOBILE APP</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">モバイルアプリ開発</h3>
+          </div>
         </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">iOS / Androidネイティブ・クロスプラットフォーム対応。ストア申請まで一貫サポート。</p>
       </div>
       <!-- Card 4 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#FFF1F2,#FFE4E6);height:180px;display:flex;align-items:center;justify-content:center;"><div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#FFF1F2;border:2px solid #FECDD3;display:flex;align-items:center;justify-content:center;transition:background 200ms;z-index:1;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#BE123C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div></div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">BUSINESS SYSTEM</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">業務システム開発</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">勤怠・在庫・受発注など業務フローに最適化したシステムを構築します。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#FFF1F2;border:1px solid #FECDD3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BE123C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">BUSINESS SYSTEM</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">業務システム開発</h3>
+          </div>
         </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">勤怠・在庫・受発注など業務フローに最適化したシステムを構築します。</p>
       </div>
       <!-- Card 5 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#FEFCE8,#FEF9C3);height:180px;display:flex;align-items:center;justify-content:center;"><div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#FEFCE8;border:2px solid #FDE68A;display:flex;align-items:center;justify-content:center;transition:background 200ms;z-index:1;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div></div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">API DEVELOPMENT</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">API設計・開発</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">RESTful / GraphQL API設計。外部連携・マイクロサービス分割にも対応。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#FEFCE8;border:1px solid #FDE68A;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">API DEVELOPMENT</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">API設計・開発</h3>
+          </div>
         </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">RESTful / GraphQL API設計。外部連携・マイクロサービス分割にも対応。</p>
       </div>
       <!-- Card 6 -->
       <div class="service-card">
-        <div style="background:linear-gradient(135deg,#F0F9FF,#E0F2FE);height:180px;display:flex;align-items:center;justify-content:center;"><div class="card-icon-bg" style="width:72px;height:72px;border-radius:18px;background:#F0F9FF;border:2px solid #BAE6FD;display:flex;align-items:center;justify-content:center;transition:background 200ms;z-index:1;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0369A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div></div>
-        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
-          <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;margin-bottom:8px;">CLOUD MIGRATION</div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0 0 10px;">クラウド移行・構築</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0 0 20px;flex:1;">AWS・GCPを活用したクラウドインフラの設計・移行・運用を支援します。</p>
-          <a href="#" class="card-more" style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#94A3B8;text-decoration:none;letter-spacing:0.1em;transition:all 200ms;border-top:1px solid #F1F5F9;padding-top:16px;">MORE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#F0F9FF;border:1px solid #BAE6FD;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0369A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">CLOUD MIGRATION</div>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;color:#0F172A;margin:0;">クラウド移行・構築</h3>
+          </div>
         </div>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">AWS・GCPを活用したクラウドインフラの設計・移行・運用を支援します。</p>
       </div>
     </div>
   </div>
@@ -495,8 +484,8 @@
     <div class="grid grid-cols-2 gap-3 md:gap-6" id="works-grid">
       <!-- Card 1: AIらくらくオーダーメイド -->
       <article class="works-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-200">
-        <div class="relative h-52 overflow-hidden bg-gradient-to-br from-[#0369A1] to-[#1B2A4A] flex items-center justify-center">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/placeholder.webp" alt="AIらくらくオーダーメイド" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" onerror="this.style.display='none';">
+        <div class="relative h-52 overflow-hidden">
+          <img src="<?php echo esc_url( get_the_post_thumbnail_url( 41, 'large' ) ); ?>" alt="AIらくらくオーダーメイド" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
           <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#CA8A04] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left z-10"></div>
         </div>
         <div class="p-6">
@@ -506,13 +495,13 @@
       </article>
       <!-- Card 2: earthlife HP -->
       <article class="works-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-200">
-        <div class="relative h-52 overflow-hidden bg-gradient-to-br from-[#0369A1] to-[#1B2A4A] flex items-center justify-center">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/placeholder.webp" alt="earthlife HP" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" onerror="this.style.display='none';">
+        <div class="relative h-52 overflow-hidden">
+          <img src="<?php echo esc_url( get_the_post_thumbnail_url( 73, 'large' ) ); ?>" alt="株式会社アースライフ様HP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
           <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#CA8A04] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left z-10"></div>
         </div>
         <div class="p-6">
           <span class="inline-block px-3 py-1 text-xs font-semibold text-[#0369A1] bg-[#EFF6FF] rounded-full font-['Poppins'] mb-3">Web Site</span>
-          <h3 class="text-base font-bold text-[#1B2A4A] mb-2 group-hover:text-[#0369A1] transition-colors duration-200">earthlife HP</h3>
+          <h3 class="text-base font-bold text-[#1B2A4A] mb-2 group-hover:text-[#0369A1] transition-colors duration-200">株式会社アースライフ様HP</h3>
         </div>
       </article>
     </div>
@@ -532,7 +521,7 @@
     <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo esc_url( home_url( '/achievements/' ) ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
-    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-xs sm:text-lg font-bold text-white">開発実績</p></div>
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-xs sm:text-lg font-bold text-white">事例</p></div>
     <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
   <a href="<?php echo home_url('/contact/'); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">

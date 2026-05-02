@@ -1,6 +1,6 @@
 <?php
 /**
- * Template: 開発実績一覧（achievement カスタム投稿アーカイブ）
+ * Template: 事例一覧（achievement カスタム投稿アーカイブ）
  */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -70,35 +70,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
     .works-card .stretched-link { position: static; }
 
-    /* === Mobile aspect 3:4 for PICK UP & main works cards === */
+    /* === Mobile card adjustments === */
     @media (max-width: 640px) {
-      /* PICK UP cards */
-      .pickup-card-shadow { aspect-ratio: 3 / 4; display: flex; flex-direction: column; }
-      .pickup-card-shadow > a { flex-shrink: 0; }
-      .pickup-card-shadow .aspect-\[4\/3\] { aspect-ratio: auto !important; height: 50% !important; }
-      .pickup-card-shadow .p-6 { padding: 12px !important; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-      .pickup-card-shadow .p-6 > span { font-size: 9px !important; padding: 2px 8px !important; margin-bottom: 6px !important; }
-      .pickup-card-shadow .p-6 h3 { font-size: 13px !important; margin-bottom: 6px !important; line-height: 1.3 !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .pickup-card-shadow .p-6 > p { font-size: 10px !important; line-height: 1.5 !important; margin-bottom: 8px !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .pickup-card-shadow .p-6 .space-y-2 { padding-top: 6px !important; }
-      .pickup-card-shadow .p-6 .space-y-2 > div { font-size: 10px !important; }
-      .pickup-card-shadow .p-6 .space-y-2 span { font-size: 10px !important; }
-      .pickup-card-shadow .p-6 .mt-5 { margin-top: 6px !important; padding-top: 6px !important; }
-      .pickup-card-shadow .p-6 .mt-5 span { font-size: 10px !important; }
-
-      /* Main works cards */
-      #works-grid .works-card { aspect-ratio: 3 / 4; }
-      #works-grid .works-card .relative.h-52 { height: 45% !important; }
-      #works-grid .works-card .p-6 { padding: 10px 12px !important; }
-      #works-grid .works-card .p-6 > span { font-size: 9px !important; padding: 2px 8px !important; margin-bottom: 6px !important; }
-      #works-grid .works-card .p-6 h3 { font-size: 12px !important; margin-bottom: 4px !important; line-height: 1.3 !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      #works-grid .works-card .p-6 > p { font-size: 10px !important; line-height: 1.4 !important; margin-bottom: 6px !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      #works-grid .works-card .p-6 .space-y-2 { padding-top: 4px !important; }
-      #works-grid .works-card .p-6 .space-y-2 > div { font-size: 10px !important; }
-      #works-grid .works-card .p-6 .space-y-2 span { font-size: 10px !important; min-width: auto !important; }
-      #works-grid .works-card .p-6 .mt-4 { margin-top: 4px !important; padding-top: 4px !important; }
-      #works-grid .works-card .p-6 .mt-4 span { font-size: 10px !important; }
-
+      /* Main works cards — match PC layout, just smaller */
+      #works-grid .works-card .relative.h-52 { height: 8rem; }
+      #works-grid .works-card .p-6 { padding: 0.75rem; }
+      #works-grid .works-card .p-6 > span { font-size: 0.625rem; padding: 2px 0.5rem; margin-bottom: 0.375rem; }
+      #works-grid .works-card .p-6 h3 { font-size: 0.8rem; margin-bottom: 0.25rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      #works-grid .works-card .p-6 > p { font-size: 0.7rem; line-height: 1.5; margin-bottom: 0.375rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      #works-grid .works-card .p-6 .mt-4 { margin-top: 0.375rem; padding-top: 0.375rem; }
+      #works-grid .works-card .p-6 .mt-4 span { font-size: 0.65rem; }
     }
     .aoibase-fade-in { opacity: 0; transform: translateY(16px); transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
     .aoibase-fade-in-visible { opacity: 1; transform: translateY(0); }
@@ -110,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   '@type'    => 'BreadcrumbList',
   'itemListElement' => array(
     array( '@type' => 'ListItem', 'position' => 1, 'name' => 'TOP', 'item' => home_url('/') ),
-    array( '@type' => 'ListItem', 'position' => 2, 'name' => '開発実績', 'item' => get_post_type_archive_link('achievement') ),
+    array( '@type' => 'ListItem', 'position' => 2, 'name' => '事例', 'item' => get_post_type_archive_link('achievement') ),
   ),
 ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
 </script>
@@ -162,13 +143,13 @@ if ( ! defined( 'ABSPATH' ) ) {
   </div>
   <div class="relative max-w-7xl mx-auto px-6">
     <p class="text-xs font-bold tracking-[0.3em] text-[#0369A1] font-['Poppins'] mb-3">WORKS</p>
-    <h1 class="text-3xl md:text-4xl font-bold text-[#1B2A4A] mb-4">開発実績</h1>
-    <p class="text-sm md:text-base text-[#64748B] leading-relaxed max-w-2xl">AOi Baseが手がけたWeb・アプリ・システム開発プロジェクトの一覧です。<br class="hidden md:block">業種・技術から、貴社に近い実績をお探しいただけます。</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-[#1B2A4A] mb-4">事例</h1>
+    <p class="text-sm md:text-base text-[#64748B] leading-relaxed max-w-2xl">AOi Baseが手がけたプロジェクト</p>
     <nav aria-label="パンくずリスト" class="mt-6 text-xs text-[#94A3B8]">
       <ol class="inline-flex items-center gap-2 list-none p-0 m-0">
         <li><a href="<?php echo esc_url( home_url('/') ); ?>" class="hover:text-[#0369A1] transition-colors">TOP</a></li>
         <li aria-hidden="true">›</li>
-        <li><span aria-current="page" class="text-[#475569]">開発実績</span></li>
+        <li><span aria-current="page" class="text-[#475569]">事例</span></li>
       </ol>
     </nav>
   </div>
@@ -284,18 +265,18 @@ $has_main_posts = have_posts();
 </main>
 
 <!-- ===== BOTTOM CTA BAR ===== -->
-<div class="grid grid-cols-1 md:grid-cols-3">
-  <a href="<?php echo esc_url( home_url('/company/') ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-lg font-bold text-white">会社概要</p></div>
-    <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+<div class="flex flex-wrap">
+  <a href="<?php echo esc_url( home_url('/company/') ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-xs sm:text-lg font-bold text-white">会社概要</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url('/#works') ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">開発実績</p></div>
-    <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url('/#works') ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-xs sm:text-lg font-bold text-white">事例</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-lg font-bold text-white">お問い合わせ</p></div>
-    <svg class="w-7 h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-xs sm:text-lg font-bold text-white">お問い合わせ</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
 </div>
 

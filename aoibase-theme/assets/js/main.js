@@ -95,6 +95,24 @@
   });});
 })();
 
+// Achievement detail modal
+function openDetailModal(type) {
+  var titles = { challenge: '課題', solution: '解決策', outcome: '成果' };
+  var dataEl = document.getElementById('detail-data-' + type);
+  var modal = document.getElementById('detail-modal');
+  if (!dataEl || !modal) return;
+  document.getElementById('modal-title').textContent = titles[type] || '';
+  document.getElementById('modal-content').innerHTML = dataEl.innerHTML;
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetailModal() {
+  var modal = document.getElementById('detail-modal');
+  if (modal) modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
 // Scroll-triggered fade-in
 (function(){
   if (!('IntersectionObserver' in window)) return;

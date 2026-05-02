@@ -2,7 +2,7 @@
 /**
  * Template: Single Achievement
  *
- * 開発実績（CPT: achievement）の詳細ページテンプレート。
+ * 事例（CPT: achievement）の詳細ページテンプレート。
  * front-page.php / page-contact.php と同じ独立完結HTML構造で構成する。
  */
 
@@ -39,7 +39,7 @@ if ( have_posts() ) :
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo esc_html( $page_title ); ?>｜開発実績｜株式会社AOi Base</title>
+  <title><?php echo esc_html( $page_title ); ?>｜事例｜株式会社AOi Base</title>
   <meta name="description" content="<?php echo esc_attr( wp_trim_words( wp_strip_all_tags( $excerpt_fallback ), 60, '…' ) ); ?>">
   <style>
     html { scroll-behavior: smooth; }
@@ -76,7 +76,7 @@ if ( have_posts() ) :
   '@type'    => 'BreadcrumbList',
   'itemListElement' => array(
     array( '@type' => 'ListItem', 'position' => 1, 'name' => 'TOP', 'item' => home_url( '/' ) ),
-    array( '@type' => 'ListItem', 'position' => 2, 'name' => '開発実績', 'item' => get_post_type_archive_link( 'achievement' ) ),
+    array( '@type' => 'ListItem', 'position' => 2, 'name' => '事例', 'item' => get_post_type_archive_link( 'achievement' ) ),
     array( '@type' => 'ListItem', 'position' => 3, 'name' => $page_title, 'item' => get_permalink() ),
   ),
 ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
@@ -142,7 +142,7 @@ if ( have_posts() ) :
         <ol class="inline-flex items-center gap-2 list-none p-0 m-0">
           <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-[#0369A1] transition-colors">TOP</a></li>
           <li aria-hidden="true">›</li>
-          <li><a href="<?php echo esc_url( get_post_type_archive_link( 'achievement' ) ); ?>" class="hover:text-[#0369A1] transition-colors">開発実績</a></li>
+          <li><a href="<?php echo esc_url( get_post_type_archive_link( 'achievement' ) ); ?>" class="hover:text-[#0369A1] transition-colors">事例</a></li>
           <li aria-hidden="true">›</li>
           <li><span aria-current="page" class="text-[#475569]"><?php echo esc_html( $page_title ); ?></span></li>
         </ol>
@@ -159,58 +159,10 @@ if ( have_posts() ) :
   </div>
 </section>
 
-<!-- ===== SHARE ===== -->
-<?php
-$share_url   = get_permalink();
-$share_title = get_the_title();
-$tw_url      = 'https://twitter.com/intent/tweet?text=' . rawurlencode( $share_title . ' / 株式会社AOi Base 実績' ) . '&url=' . rawurlencode( $share_url );
-$ln_url      = 'https://www.linkedin.com/sharing/share-offsite/?url=' . rawurlencode( $share_url );
-$fb_url      = 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode( $share_url );
-?>
-<section class="bg-white py-6 border-t border-[#E2E8F0]">
-  <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center gap-3">
-    <p class="text-xs font-bold tracking-[0.25em] text-[#94A3B8] uppercase font-['Poppins'] mr-2">SHARE</p>
-    <a href="<?php echo esc_url( $tw_url ); ?>" target="_blank" rel="noopener noreferrer nofollow" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#1B2A4A] bg-[#F8FAFC] rounded-full hover:bg-[#0369A1] hover:text-white transition-all" aria-label="Xでシェア">
-      <svg class="w-3.5 h-3.5" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      X
-    </a>
-    <a href="<?php echo esc_url( $ln_url ); ?>" target="_blank" rel="noopener noreferrer nofollow" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#1B2A4A] bg-[#F8FAFC] rounded-full hover:bg-[#0A66C2] hover:text-white transition-all" aria-label="LinkedInでシェア">
-      <svg class="w-3.5 h-3.5" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.56V9h3.56v11.45z"/></svg>
-      LinkedIn
-    </a>
-    <button type="button" id="aoibase-copy-url" data-url="<?php echo esc_attr( $share_url ); ?>" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#1B2A4A] bg-[#F8FAFC] rounded-full hover:bg-[#1B2A4A] hover:text-white transition-all" aria-label="URLをコピー">
-      <svg class="w-3.5 h-3.5" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-      <span id="aoibase-copy-label">URLをコピー</span>
-    </button>
-  </div>
-</section>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  var btn = document.getElementById('aoibase-copy-url');
-  if (!btn) return;
-  btn.addEventListener('click', function(){
-    var url = btn.getAttribute('data-url');
-    if (!url || !navigator.clipboard) return;
-    navigator.clipboard.writeText(url).then(function(){
-      var label = document.getElementById('aoibase-copy-label');
-      if (label) {
-        var original = label.textContent;
-        label.textContent = 'コピーしました';
-        setTimeout(function(){ label.textContent = original; }, 1500);
-      }
-    });
-  });
-});
-</script>
-
 <!-- ===== PROJECT META BAR ===== -->
 <section class="bg-[#F8FAFC] py-10 md:py-12 mt-12">
   <div class="max-w-7xl mx-auto px-6">
-    <dl class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-      <div>
-        <dt class="text-[10px] font-bold tracking-[0.25em] text-[#94A3B8] uppercase font-['Poppins'] mb-2">PERIOD</dt>
-        <dd class="text-sm md:text-base font-semibold text-[#1B2A4A]"><?php echo $aoibase_period ? esc_html( $aoibase_period ) : '—'; ?></dd>
-      </div>
+    <dl class="grid grid-cols-3 gap-8 md:gap-6">
       <div>
         <dt class="text-[10px] font-bold tracking-[0.25em] text-[#94A3B8] uppercase font-['Poppins'] mb-2">CLIENT</dt>
         <dd class="text-sm md:text-base font-semibold text-[#1B2A4A]"><?php echo $aoibase_client_name ? esc_html( $aoibase_client_name ) : '—'; ?></dd>
@@ -266,7 +218,53 @@ if ( $cso_show ) :
       <h2 class="text-3xl md:text-4xl font-bold text-[#1B2A4A] font-['Noto_Sans_JP']">課題・解決・成果</h2>
       <div class="mt-4 mx-auto w-12 h-0.5 bg-[#0369A1]"></div>
     </div>
-    <div class="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none gap-4 md:gap-8 pb-4 md:pb-0 -mx-6 md:mx-0 px-6 md:px-0">
+    <!-- Hidden data for modal -->
+    <div id="detail-data-challenge" class="hidden"><?php echo wp_kses_post( $aoibase_challenge ); ?></div>
+    <div id="detail-data-solution" class="hidden"><?php echo wp_kses_post( $aoibase_solution ); ?></div>
+    <div id="detail-data-outcome" class="hidden"><?php echo wp_kses_post( $aoibase_outcome ); ?></div>
+
+    <!-- Mobile: compact cards with modal trigger -->
+    <div class="md:hidden space-y-3">
+      <?php if ( $has_challenge ) : ?>
+      <button onclick="openDetailModal('challenge')" class="w-full flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm border border-[#F1F5F9] text-left">
+        <div class="w-10 h-10 rounded-lg bg-[#FEF2F2] flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-[#DC2626]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-xs font-bold tracking-widest text-[#DC2626] font-['Poppins'] uppercase">Challenge</p>
+          <p class="text-sm font-bold text-[#1B2A4A]">課題</p>
+        </div>
+        <span class="text-xs text-[#94A3B8] flex-shrink-0">詳しくみる →</span>
+      </button>
+      <?php endif; ?>
+      <?php if ( $has_solution ) : ?>
+      <button onclick="openDetailModal('solution')" class="w-full flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm border border-[#F1F5F9] text-left">
+        <div class="w-10 h-10 rounded-lg bg-[#EFF6FF] flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-[#0369A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-xs font-bold tracking-widest text-[#0369A1] font-['Poppins'] uppercase">Solution</p>
+          <p class="text-sm font-bold text-[#1B2A4A]">解決策</p>
+        </div>
+        <span class="text-xs text-[#94A3B8] flex-shrink-0">詳しくみる →</span>
+      </button>
+      <?php endif; ?>
+      <?php if ( $has_outcome ) : ?>
+      <button onclick="openDetailModal('outcome')" class="w-full flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm border border-[#F1F5F9] text-left">
+        <div class="w-10 h-10 rounded-lg bg-[#F0FDF4] flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-[#15803D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-xs font-bold tracking-widest text-[#15803D] font-['Poppins'] uppercase">Outcome</p>
+          <p class="text-sm font-bold text-[#1B2A4A]">成果</p>
+        </div>
+        <span class="text-xs text-[#94A3B8] flex-shrink-0">詳しくみる →</span>
+      </button>
+      <?php endif; ?>
+    </div>
+
+    <!-- PC: original 3-column layout (hidden on mobile) -->
+    <div class="hidden md:grid md:grid-cols-3 gap-4 md:gap-8 pb-4 md:pb-0">
       <?php if ( $has_challenge ) : ?>
         <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-200 p-6 md:p-8 border border-[#E2E8F0]/60 flex-shrink-0 basis-[280px] md:basis-auto snap-start">
           <div class="w-12 h-12 rounded-full bg-[#0369A1] text-white flex items-center justify-center mb-5 font-['Poppins'] font-bold text-sm">01</div>
@@ -484,18 +482,18 @@ if ( $related_query && $related_query->have_posts() ) :
 
 
 <!-- ===== BOTTOM CTA BAR ===== -->
-<div class="grid grid-cols-1 md:grid-cols-3">
-  <a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-lg font-bold text-white">会社概要</p></div>
-    <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+<div class="flex flex-row flex-wrap md:grid md:grid-cols-3">
+  <a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-sm md:text-lg font-bold text-white">会社概要</p></div>
+    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url( '/#works' ) ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-b md:border-b-0 md:border-r border-white/10">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-lg font-bold text-white">開発実績</p></div>
-    <svg class="w-7 h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url( '/#works' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-sm md:text-lg font-bold text-white">事例</p></div>
+    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="group flex items-center justify-between px-8 py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
-    <div><p class="text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-lg font-bold text-white">お問い合わせ</p></div>
-    <svg class="w-7 h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
+    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-sm md:text-lg font-bold text-white">お問い合わせ</p></div>
+    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
 </div>
 
@@ -536,6 +534,22 @@ if ( $related_query && $related_query->have_posts() ) :
   <svg class="w-5 h-5" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
   <span class="text-[9px] font-bold tracking-wider font-['Poppins'] mt-0.5">TOP</span>
 </button>
+
+<!-- Detail Modal -->
+<div id="detail-modal" class="fixed inset-0 z-50 hidden" onclick="if(event.target===this)closeDetailModal()">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative flex items-end md:items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-t-2xl md:rounded-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl">
+      <div class="sticky top-0 bg-white border-b border-[#F1F5F9] px-6 py-4 flex items-center justify-between rounded-t-2xl">
+        <h3 id="modal-title" class="text-lg font-bold text-[#1B2A4A]"></h3>
+        <button onclick="closeDetailModal()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F1F5F9] transition-colors">
+          <svg class="w-5 h-5 text-[#94A3B8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="modal-content" class="px-6 py-5 text-sm text-[#475569] leading-relaxed achievement-content"></div>
+    </div>
+  </div>
+</div>
 
 <?php wp_footer(); ?>
 </body>
