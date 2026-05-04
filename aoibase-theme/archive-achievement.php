@@ -286,7 +286,7 @@ $has_main_posts = have_posts();
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-white/10">
       <div>
         <span class="text-2xl font-extrabold tracking-tight font-['Poppins']"><span class="text-white">AOi </span><span class="text-[#0369A1]">Base</span></span>
-        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想を実現へ</p>
+        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想をカタチに</p>
       </div>
       <div>
         <h3 class="text-xs font-bold tracking-[0.3em] text-white/40 font-['Poppins'] uppercase mb-6">CONTACT INFO</h3>

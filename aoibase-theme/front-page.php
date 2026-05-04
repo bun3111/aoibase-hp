@@ -173,7 +173,7 @@
         <span class="font-['Poppins'] text-[7px] md:text-[8px] tracking-[0.2em] text-white/50 uppercase mt-0.5">Total Development Solutions</span>
       </div>
       <div>
-        <h1 class="font-['Noto_Sans_JP'] text-lg sm:text-xl md:text-2xl lg:text-3xl text-white leading-tight tracking-tight" style="font-weight:700;">構想を実現へ</h1>
+        <h1 class="font-['Noto_Sans_JP'] text-lg sm:text-xl md:text-2xl lg:text-3xl text-white leading-tight tracking-tight" style="font-weight:700;">構想をカタチに</h1>
         <p class="font-['Poppins'] text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase mt-1" style="letter-spacing:0.18em;">Turning Ideas into Reality</p>
       </div>
     </div>
@@ -536,7 +536,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-white/10">
       <div>
         <span class="text-2xl font-extrabold tracking-tight font-['Poppins']"><span class="text-white">AOi </span><span class="text-[#0369A1]">Base</span></span>
-        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想を実現へ</p>
+        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想をカタチに</p>
       </div>
       <div>
         <h3 class="text-xs font-bold tracking-[0.3em] text-white/40 font-['Poppins'] uppercase mb-6">CONTACT INFO</h3>

@@ -482,18 +482,18 @@ if ( $related_query && $related_query->have_posts() ) :
 
 
 <!-- ===== BOTTOM CTA BAR ===== -->
-<div class="flex flex-row flex-wrap md:grid md:grid-cols-3">
-  <a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
-    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-sm md:text-lg font-bold text-white">会社概要</p></div>
-    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+<div class="flex flex-wrap">
+  <a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-xs sm:text-lg font-bold text-white">会社概要</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url( '/#works' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
-    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-sm md:text-lg font-bold text-white">事例</p></div>
-    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url( '/#works' ) ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-xs sm:text-lg font-bold text-white">事例</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
-  <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="group flex flex-1 items-center justify-between px-4 py-4 md:px-8 md:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
-    <div><p class="text-[10px] md:text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-sm md:text-lg font-bold text-white">お問い合わせ</p></div>
-    <svg class="w-5 h-5 md:w-7 md:h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
+    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-xs sm:text-lg font-bold text-white">お問い合わせ</p></div>
+    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
   </a>
 </div>
 
@@ -503,7 +503,7 @@ if ( $related_query && $related_query->have_posts() ) :
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-white/10">
       <div>
         <span class="text-2xl font-extrabold tracking-tight font-['Poppins']"><span class="text-white">AOi </span><span class="text-[#0369A1]">Base</span></span>
-        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想を実現へ</p>
+        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想をカタチに</p>
       </div>
       <div>
         <h3 class="text-xs font-bold tracking-[0.3em] text-white/40 font-['Poppins'] uppercase mb-6">CONTACT INFO</h3>
@@ -538,8 +538,8 @@ if ( $related_query && $related_query->have_posts() ) :
 <!-- Detail Modal -->
 <div id="detail-modal" class="fixed inset-0 z-50 hidden" onclick="if(event.target===this)closeDetailModal()">
   <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-  <div class="relative flex items-end md:items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-t-2xl md:rounded-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl">
+  <div class="relative flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl -mt-[10vh] md:mt-0">
       <div class="sticky top-0 bg-white border-b border-[#F1F5F9] px-6 py-4 flex items-center justify-between rounded-t-2xl">
         <h3 id="modal-title" class="text-lg font-bold text-[#1B2A4A]"></h3>
         <button onclick="closeDetailModal()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F1F5F9] transition-colors">
