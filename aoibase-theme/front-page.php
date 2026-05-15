@@ -110,9 +110,9 @@
 
 <!-- ===== NAV ===== -->
 <header id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200" style="transition: box-shadow 200ms ease;">
-  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-12 md:h-20">
     <a href="#" class="flex items-center cursor-pointer group" aria-label="AOi Base トップページ">
-      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo-aoi.png" alt="AOi Base" class="h-8 md:h-12 w-auto" loading="eager" decoding="async">
+      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo-aoi.png" alt="AOi Base" class="h-5 md:h-12 w-auto" loading="eager" decoding="async">
     </a>
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a href="<?php echo home_url('/'); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">TOP</a>
@@ -142,50 +142,30 @@
   </div>
 </header>
 
-<!-- ===== HERO SLIDER ===== -->
-<section id="hero" class="relative w-full overflow-hidden" style="height: 50svh; min-height: 400px;">
-  <div id="hero-track" class="absolute inset-0">
-    <div class="hero-slide absolute inset-0 transition-opacity duration-[1200ms] ease-in-out" data-index="0">
-      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/835863eb-fcab-49ba-81d6-d180e50d4dea.png" alt="カフェ風オフィス" class="absolute inset-0 w-full h-full object-cover object-bottom" loading="eager">
-      <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(27,42,74,0.62) 0%,rgba(3,105,161,0.25) 60%,transparent 100%);"></div>
-    </div>
-    <div class="hero-slide absolute inset-0 transition-opacity duration-[1200ms] ease-in-out opacity-0" data-index="1">
-      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/c41bb55f-c4a0-4996-8e36-148fff08b92b.png" alt="ワーキングスペース" class="absolute inset-0 w-full h-full object-cover object-bottom" loading="lazy">
-      <div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(27,42,74,0.62) 0%,rgba(3,105,161,0.25) 60%,transparent 100%);"></div>
-    </div>
-  </div>
-  <!-- Dots -->
-  <div class="absolute bottom-[calc(5rem+24px)] left-6 md:left-16 flex gap-2 z-10">
-    <button class="hero-dot w-5 h-0.5 bg-white cursor-pointer transition-all duration-200 active" data-target="0" aria-label="スライド1"></button>
-    <button class="hero-dot w-2 h-0.5 bg-white opacity-40 cursor-pointer transition-all duration-200" data-target="1" aria-label="スライド2"></button>
-  </div>
-  <!-- Counter -->
-  <div class="absolute right-6 md:right-16 bottom-[calc(5rem+20px)] flex flex-col items-end z-10">
-    <span id="hero-current" class="font-['Poppins'] text-white text-sm" style="font-weight:500;">01</span>
-    <span class="block w-px h-8 bg-white opacity-30 my-1 mx-auto"></span>
-    <span class="font-['Poppins'] text-white text-sm opacity-40">02</span>
-  </div>
-  <!-- Bottom band -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 bg-[#1B2A4A]/90 backdrop-blur-sm" style="height:5rem;">
-    <div class="max-w-screen-xl mx-auto h-full px-6 md:px-16 flex items-center gap-8 md:gap-16">
-      <div class="hidden sm:flex flex-col shrink-0 border-r border-white/20 pr-8 md:pr-16">
-        <span class="font-['Poppins'] text-xl md:text-2xl text-white" style="font-weight:800;">AOi <span class="text-[#0369A1]">Base</span></span>
-        <span class="font-['Poppins'] text-[7px] md:text-[8px] tracking-[0.2em] text-white/50 uppercase mt-0.5">Total Development Solutions</span>
-      </div>
-      <div>
-        <h1 class="font-['Noto_Sans_JP'] text-lg sm:text-xl md:text-2xl lg:text-3xl text-white leading-tight tracking-tight" style="font-weight:700;">構想をカタチに</h1>
-        <p class="font-['Poppins'] text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase mt-1" style="letter-spacing:0.18em;">Turning Ideas into Reality</p>
-      </div>
-    </div>
-  </div>
+<!-- ===== HERO ===== -->
+<div class="h-12 md:h-20 lg:h-0"></div>
+<section id="hero" class="relative w-full overflow-hidden">
+  <picture>
+    <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.png">
+    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.png" alt="AOi Base" class="w-full h-auto block" loading="eager">
+  </picture>
   <!-- Scroll indicator -->
   <div class="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-2">
-    <span class="font-['Poppins'] text-[9px] tracking-[0.3em] text-white uppercase opacity-60" style="writing-mode:vertical-rl;font-weight:500;">Scroll</span>
-    <div class="w-px bg-white opacity-30 overflow-hidden relative" style="height:64px;">
-      <div class="absolute top-0 left-0 w-full bg-white" style="height:50%;animation:scrollDown 1.8s ease-in-out infinite;"></div>
+    <span class="font-['Poppins'] text-[9px] tracking-[0.3em] text-[#1B2A4A] uppercase opacity-60" style="writing-mode:vertical-rl;font-weight:500;">Scroll</span>
+    <div class="w-px bg-[#1B2A4A] opacity-30 overflow-hidden relative" style="height:64px;">
+      <div class="absolute top-0 left-0 w-full bg-[#1B2A4A]" style="height:50%;animation:scrollDown 1.8s ease-in-out infinite;"></div>
     </div>
   </div>
 </section>
+<!-- Bottom band -->
+<div class="bg-[#1B2A4A] h-10 lg:h-[3.75rem]">
+  <div class="max-w-screen-xl mx-auto h-full px-6 md:px-16 flex items-center">
+    <div class="flex flex-col shrink-0">
+      <span class="font-['Poppins'] text-sm lg:text-xl text-white" style="font-weight:800;">AOi <span class="text-[#0369A1]">Base</span></span>
+      <span class="font-['Poppins'] text-[6px] lg:text-[10px] tracking-[0.2em] text-white/50 uppercase" style="margin-top:1px;">Total Development Solutions</span>
+    </div>
+  </div>
+</div>
 
 <!-- ===== NEWS TICKER ===== -->
 <section id="news" class="bg-white border-b border-slate-200">

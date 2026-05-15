@@ -40,9 +40,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- ===== NAV ===== -->
 <header id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200" style="transition: box-shadow 200ms ease;">
-  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-12 md:h-20">
     <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center cursor-pointer group" aria-label="AOi Base トップページ">
-      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo-aoi.png" alt="AOi Base" class="h-8 md:h-12 w-auto" loading="eager" decoding="async">
+      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo-aoi.png" alt="AOi Base" class="h-5 md:h-12 w-auto" loading="eager" decoding="async">
     </a>
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">TOP</a>
