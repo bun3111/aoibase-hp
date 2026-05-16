@@ -377,7 +377,7 @@
       <div class="mt-4 w-12 h-0.5 bg-[#0369A1]"></div>
     </div>
     <!-- Mobile: animated horizontal scroll -->
-    <div class="md:hidden" style="overflow:hidden;width:100%;padding-bottom:16px;">
+    <div class="md:hidden" style="overflow:hidden;padding-bottom:16px;margin:0 -24px;">
       <div class="flow-track">
         <div class="flow-item flex flex-col items-center text-center">
           <div class="w-20 h-20 rounded-full bg-[#EFF6FF] border-2 border-[#0369A1] flex items-center justify-center mb-4"><svg class="w-8 h-8 text-[#0369A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.953 9.953 0 01-4.814-1.229L3 20l1.229-4.186A8.955 8.955 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
