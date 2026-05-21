@@ -88,10 +88,10 @@ Claude Code 起動時に以下を自動実行:
 
 | ID | タイトル | スラッグ |
 |----|---------|---------|
-| 41 | AIらくらくオーダーメイド | ai-order |
-| 73 | 株式会社アースライフ様 | earthlife |
-| 62 | トランプゲームアプリ | trump-game |
-| 56 | 口コミサイト | kuchikomi |
+| 41 | AIらくらくオーダーメイド | aiらくらくオーダーメイド |
+| 73 | 株式会社アースライフ様 | 株式会社アースライフ |
+| 62 | トランプゲームアプリ | トランプカードゲーム |
+| 56 | 口コミ半自動返信システム | 口コミ半自動返信システム |
 
 ---
 
@@ -103,7 +103,9 @@ Claude Code 起動時に以下を自動実行:
 cd ~/Desktop/aoibase\ HP && zip -r ~/Desktop/aoibase-theme.zip aoibase-theme/ -x "*.git*" "*.DS_Store"
 
 # Windows (PowerShell)
-Compress-Archive -Path "<デスクトップ>\aoibase HP\aoibase-theme" -DestinationPath "<デスクトップ>\aoibase-theme.zip" -Force
+# 注意: Compress-Archive はバックスラッシュ区切りZIPを生成しWPが認識不可。
+# System.IO.Compression で forward slash エントリを生成すること。
+# 例: build-theme-zip.ps1 を作成し ZipFile::Open + CreateEntryFromFile で $rel -replace '\\','/' する
 ```
 
 ### アップロード（Playwright MCP）
