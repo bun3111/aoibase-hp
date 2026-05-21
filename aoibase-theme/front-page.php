@@ -143,7 +143,7 @@
 </header>
 
 <!-- ===== HERO ===== -->
-<div class="h-12 md:h-20 lg:h-0"></div>
+<div class="h-12 md:h-20"></div>
 <section id="hero" class="relative w-full overflow-hidden">
   <picture>
     <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.png">
