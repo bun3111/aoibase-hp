@@ -188,6 +188,9 @@ function aoibase_register_achievement_meta() {
 		'_aoibase_summary'        => 'sanitize_textarea_field',
 		'_aoibase_outcome_metric' => 'sanitize_text_field',
 		'_aoibase_gallery_ids'    => 'aoibase_sanitize_csv_ids',
+		'_aoibase_background'     => 'wp_kses_post',
+		'_aoibase_approach'       => 'wp_kses_post',
+		'_aoibase_key_points'     => 'wp_kses_post',
 	);
 
 	foreach ( $meta_fields as $key => $sanitize_cb ) {
@@ -285,11 +288,14 @@ function aoibase_render_achievement_meta_box( $post ) {
 	$period         = get_post_meta( $post->ID, '_aoibase_period', true );
 	$client_name    = get_post_meta( $post->ID, '_aoibase_client_name', true );
 	$project_url    = get_post_meta( $post->ID, '_aoibase_project_url', true );
+	$summary        = get_post_meta( $post->ID, '_aoibase_summary', true );
+	$background     = get_post_meta( $post->ID, '_aoibase_background', true );
 	$challenge      = get_post_meta( $post->ID, '_aoibase_challenge', true );
 	$solution       = get_post_meta( $post->ID, '_aoibase_solution', true );
+	$approach       = get_post_meta( $post->ID, '_aoibase_approach', true );
 	$outcome        = get_post_meta( $post->ID, '_aoibase_outcome', true );
-	$summary        = get_post_meta( $post->ID, '_aoibase_summary', true );
 	$outcome_metric = get_post_meta( $post->ID, '_aoibase_outcome_metric', true );
+	$key_points     = get_post_meta( $post->ID, '_aoibase_key_points', true );
 	$gallery_ids    = get_post_meta( $post->ID, '_aoibase_gallery_ids', true );
 	$is_featured    = get_post_meta( $post->ID, '_aoibase_is_featured', true );
 	?>
@@ -320,6 +326,10 @@ function aoibase_render_achievement_meta_box( $post ) {
 			<textarea id="aoibase_summary" name="aoibase_summary" rows="3"><?php echo esc_textarea( $summary ); ?></textarea>
 		</div>
 		<div>
+			<label for="aoibase_background"><?php echo esc_html( 'プロジェクト背景' ); ?></label>
+			<textarea id="aoibase_background" name="aoibase_background" rows="4" placeholder="なぜこのプロジェクトが必要だったか（ビジネス文脈）"><?php echo esc_textarea( $background ); ?></textarea>
+		</div>
+		<div>
 			<label for="aoibase_challenge"><?php echo esc_html( '課題' ); ?></label>
 			<textarea id="aoibase_challenge" name="aoibase_challenge" rows="4"><?php echo esc_textarea( $challenge ); ?></textarea>
 		</div>
@@ -328,12 +338,20 @@ function aoibase_render_achievement_meta_box( $post ) {
 			<textarea id="aoibase_solution" name="aoibase_solution" rows="4"><?php echo esc_textarea( $solution ); ?></textarea>
 		</div>
 		<div>
+			<label for="aoibase_approach"><?php echo esc_html( 'アプローチ（技術選定理由・設計方針）' ); ?></label>
+			<textarea id="aoibase_approach" name="aoibase_approach" rows="4" placeholder="技術選定の理由、設計方針、アーキテクチャ判断"><?php echo esc_textarea( $approach ); ?></textarea>
+		</div>
+		<div>
 			<label for="aoibase_outcome"><?php echo esc_html( '成果' ); ?></label>
 			<textarea id="aoibase_outcome" name="aoibase_outcome" rows="4"><?php echo esc_textarea( $outcome ); ?></textarea>
 		</div>
 		<div>
 			<label for="aoibase_outcome_metric"><?php echo esc_html( '成果指標' ); ?></label>
 			<input type="text" id="aoibase_outcome_metric" name="aoibase_outcome_metric" value="<?php echo esc_attr( $outcome_metric ); ?>" placeholder="例: CVR +35%" />
+		</div>
+		<div>
+			<label for="aoibase_key_points"><?php echo esc_html( '工夫した点' ); ?></label>
+			<textarea id="aoibase_key_points" name="aoibase_key_points" rows="4" placeholder="技術的ハイライト・独自の工夫（箇条書き推奨）"><?php echo esc_textarea( $key_points ); ?></textarea>
 		</div>
 		<div>
 			<label><?php echo esc_html( 'ギャラリー画像' ); ?></label>
@@ -438,11 +456,14 @@ function aoibase_save_achievement_meta( $post_id ) {
 		'_aoibase_period'         => array( 'aoibase_period', 'sanitize_text_field' ),
 		'_aoibase_client_name'    => array( 'aoibase_client_name', 'sanitize_text_field' ),
 		'_aoibase_project_url'    => array( 'aoibase_project_url', 'esc_url_raw' ),
+		'_aoibase_background'     => array( 'aoibase_background', 'wp_kses_post' ),
 		'_aoibase_challenge'      => array( 'aoibase_challenge', 'wp_kses_post' ),
 		'_aoibase_solution'       => array( 'aoibase_solution', 'wp_kses_post' ),
+		'_aoibase_approach'       => array( 'aoibase_approach', 'wp_kses_post' ),
 		'_aoibase_outcome'        => array( 'aoibase_outcome', 'wp_kses_post' ),
 		'_aoibase_summary'        => array( 'aoibase_summary', 'sanitize_textarea_field' ),
 		'_aoibase_outcome_metric' => array( 'aoibase_outcome_metric', 'sanitize_text_field' ),
+		'_aoibase_key_points'     => array( 'aoibase_key_points', 'wp_kses_post' ),
 		'_aoibase_gallery_ids'    => array( 'aoibase_gallery_ids', 'aoibase_sanitize_csv_ids' ),
 	);
 
