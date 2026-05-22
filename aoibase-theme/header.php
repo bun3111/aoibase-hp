@@ -7,7 +7,7 @@ $nav_links = array(
     array( 'url' => '/',              'label' => 'TOP',        'active' => is_front_page() ),
     array( 'url' => '/news/',         'label' => 'NEWS',       'active' => is_page( 'news' ) || ( is_home() && ! is_front_page() ) ),
     array( 'url' => '/flow/',         'label' => '開発の流れ',  'active' => is_page( 'flow' ) ),
-    array( 'url' => '/achievements/', 'label' => '事例',        'active' => is_post_type_archive( 'achievement' ) || is_singular( 'achievement' ) ),
+    array( 'url' => '/portfolio/',     'label' => '開発事例',    'active' => is_page( 'portfolio' ) ),
     array( 'url' => '/company/',      'label' => '企業情報',    'active' => is_page( 'company' ) ),
 );
 ?>

@@ -67,13 +67,6 @@
     #company dl > div > dd { font-size: 12px !important; }
     #company h2 { font-size: 22px !important; }
 
-    #works-grid .works-card { aspect-ratio: 3 / 4; display: flex; flex-direction: column; }
-    #works-grid .works-card .relative.h-52 { height: 60% !important; flex-shrink: 0; }
-    #works-grid .works-card .p-6 { padding: 10px 12px !important; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    #works-grid .works-card .p-6 > span { display: none !important; }
-    #works-grid .works-card .p-6 > p { display: none !important; }
-    #works-grid .works-card .p-6 > div.flex.items-center { display: none !important; }
-    #works-grid .works-card .p-6 > h3 { font-size: 12px !important; line-height: 1.4 !important; margin: 0 !important; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   }
 
   .service-card {
@@ -379,56 +372,54 @@ $process_steps = array(
 <!-- ===== WORKS ===== -->
 <section id="works" class="py-20 bg-[#F8FAFC]">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="mb-4"><h2 class="text-[clamp(4rem,12vw,9rem)] font-extrabold leading-none tracking-tight text-[#1B2A4A] opacity-5 font-['Poppins'] select-none">WORKS</h2></div>
+    <div class="mb-4"><span class="block text-[clamp(4rem,12vw,9rem)] font-extrabold leading-none tracking-tight text-[#1B2A4A] opacity-5 font-['Poppins'] select-none" aria-hidden="true">WORKS</span></div>
     <div class="-mt-8 md:-mt-16 mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
         <p class="text-xs font-semibold tracking-[0.3em] text-[#0369A1] uppercase mb-1 font-['Poppins']">WORKS</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-[#1B2A4A]">事例</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#1B2A4A]">開発事例</h2>
         <div class="mt-3 w-12 h-0.5 bg-[#0369A1]"></div>
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 md:gap-6" id="works-grid">
-      <?php
-      $works_query = new WP_Query( array(
-        'post_type'      => 'achievement',
-        'posts_per_page' => 2,
-        'post_status'    => 'publish',
-        'meta_key'       => '_aoibase_is_featured',
-        'meta_value'     => '1',
-        'no_found_rows'  => true,
-      ) );
-      if ( ! $works_query->have_posts() ) {
-        $works_query = new WP_Query( array(
-          'post_type'      => 'achievement',
-          'posts_per_page' => 2,
-          'post_status'    => 'publish',
-          'no_found_rows'  => true,
-        ) );
-      }
-      while ( $works_query->have_posts() ) : $works_query->the_post();
-        $cats = get_the_terms( get_the_ID(), 'achievement_category' );
-        $cat_label = $cats && ! is_wp_error( $cats ) ? $cats[0]->name : '';
+    <?php
+    $portfolio_parent = get_page_by_path( 'portfolio' );
+    $portfolio_children = $portfolio_parent ? get_pages( array( 'child_of' => $portfolio_parent->ID, 'post_status' => 'publish', 'sort_column' => 'menu_order,post_date', 'sort_order' => 'ASC' ) ) : array();
+
+    $works_query = new WP_Query( array(
+      'post_type'      => 'achievement',
+      'posts_per_page' => -1,
+      'post_status'    => 'publish',
+      'no_found_rows'  => true,
+    ) );
+    $achievement_map = array();
+    while ( $works_query->have_posts() ) : $works_query->the_post();
+      $achievement_map[ get_the_title() ] = array(
+        'id'    => get_the_ID(),
+        'thumb' => get_the_post_thumbnail_url( get_the_ID(), 'large' ),
+      );
+    endwhile;
+    wp_reset_postdata();
+    ?>
+    <div class="grid grid-cols-2 gap-3 md:gap-5 max-w-3xl mx-auto" id="works-grid">
+      <?php foreach ( $portfolio_children as $child ) :
+        $child_title = $child->post_title;
+        $thumb_url   = isset( $achievement_map[ $child_title ] ) ? $achievement_map[ $child_title ]['thumb'] : '';
       ?>
-      <article class="works-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-200">
-        <div class="relative h-52 overflow-hidden">
-          <?php if ( has_post_thumbnail() ) : ?>
-          <img src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'large' ) ); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+      <div class="rounded-2xl overflow-hidden shadow-sm border border-[#E2E8F0]">
+        <div class="aspect-[4/3] overflow-hidden bg-[#F8FAFC]">
+          <?php if ( $thumb_url ) : ?>
+            <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $child_title ); ?>" class="w-full h-full object-cover" loading="lazy">
+          <?php else : ?>
+            <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0369A1] to-[#1B2A4A]">
+              <svg class="w-10 h-10 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
           <?php endif; ?>
-          <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#CA8A04] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left z-10"></div>
         </div>
-        <div class="p-6">
-          <?php if ( $cat_label ) : ?>
-          <span class="inline-block px-3 py-1 text-xs font-semibold text-[#0369A1] bg-[#EFF6FF] rounded-full font-['Poppins'] mb-3"><?php echo esc_html( $cat_label ); ?></span>
-          <?php endif; ?>
-          <h3 class="text-base font-bold text-[#1B2A4A] mb-2 group-hover:text-[#0369A1] transition-colors duration-200"><?php the_title(); ?></h3>
-        </div>
-      </article>
-      <?php endwhile; wp_reset_postdata(); ?>
+      </div>
+      <?php endforeach; ?>
     </div>
     <div class="mt-10 text-center">
-      <a href="<?php echo esc_url( home_url( '/achievements/' ) ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-[#0369A1] hover:bg-[#1B2A4A] text-white text-sm font-bold rounded-full transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-['Poppins']" style="letter-spacing:0.1em;">
-        詳しく見る
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="inline-flex items-center px-8 py-4 bg-[#0369A1] hover:bg-[#1B2A4A] text-white text-sm font-bold rounded-full transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-['Poppins']" style="letter-spacing:0.1em;">
+        詳細を見る
       </a>
     </div>
   </div>

@@ -246,15 +246,16 @@ function aoibase_customize_register( $wp_customize ) {
         'panel' => 'aoibase_security',
     ) );
 
-    $add_field( 'aoibase_security_risks', 'security_intro', 'イントロ文', 'Webアプリケーションやシステムには、設計・実装の段階で混入する脆弱性が存在します。これらは外部からの攻撃や情報漏洩の原因となり、事業継続に深刻な影響を与えます。開発段階からセキュリティを意識することで、リスクを最小化できます。', 'textarea' );
+    $add_field( 'aoibase_security_risks', 'security_header_lead', 'ヘッダーリード文', '「うちは小さい会社だから大丈夫」——その油断が最大のリスクです。サイバー攻撃の標的は大企業だけではありません。', 'textarea' );
+    $add_field( 'aoibase_security_risks', 'security_intro', 'イントロ文', 'セキュリティ被害の損害額は中小企業でも数百万円規模。「知らなかった」では済まないリスクが、あなたのWebサイトやシステムにも潜んでいます。', 'textarea' );
 
     $security_risk_defaults = array(
-        1 => array( 'SQLインジェクション',         '不正なSQL文を注入し、データベースの情報を窃取・改ざんする攻撃。入力値の検証不備が原因で発生します。' ),
-        2 => array( 'クロスサイトスクリプティング', '悪意あるスクリプトをWebページに埋め込み、ユーザーのセッション情報や個人データを盗み取る攻撃手法です。' ),
-        3 => array( '認証・認可の不備',             'パスワード管理の甘さやセッション管理の不備により、不正アクセスやアカウント乗っ取りが発生するリスクです。' ),
-        4 => array( 'CSRF（リクエスト強要）',       'ユーザーの意図しないリクエストを送信させ、設定変更や送金などの操作を不正に実行させる攻撃です。' ),
-        5 => array( '機密情報の漏洩',               'エラーメッセージやログに含まれるシステム情報、不適切なアクセス制御により内部情報が外部に露出するリスクです。' ),
-        6 => array( '依存パッケージの脆弱性',       '利用しているライブラリやフレームワークに含まれる既知の脆弱性が、システム全体のリスクとなります。' ),
+        1 => array( '顧客データの一括流出',         'お客様の個人情報・決済情報がまとめて盗まれる攻撃。謝罪対応・損害賠償・信用失墜につながり、事業存続を脅かします。' ),
+        2 => array( 'サイト訪問者への二次被害',     'あなたのサイトを訪れたお客様が、知らないうちに偽サイトに誘導されたり個人情報を抜き取られる被害。サイトの信頼が一瞬で崩れます。' ),
+        3 => array( '管理画面の乗っ取り',           '管理画面への不正ログインにより、サイト改ざんや顧客データの持ち出しが発生。パスワードが簡単だっただけで全データが流出する事例も。' ),
+        4 => array( 'なりすまし操作',               'ログイン中のユーザーが、意図せず送金や設定変更を実行させられる攻撃。ECサイトや会員制サービスで特に深刻な被害が報告されています。' ),
+        5 => array( 'システム内部の露出',           'サーバー情報やデータベース構造が外部から丸見えになり、攻撃者に侵入の手がかりを与えてしまう状態。多くの情報漏洩事故の入り口です。' ),
+        6 => array( '放置された開発ツールの欠陥',   '開発に使われた外部ツールの欠陥が、そのままシステムの弱点に。「作って終わり」の開発会社に任せると、放置されたまま攻撃対象になります。' ),
     );
 
     foreach ( $security_risk_defaults as $n => $d ) {
@@ -269,9 +270,9 @@ function aoibase_customize_register( $wp_customize ) {
     ) );
 
     $security_approach_defaults = array(
-        1 => array( '設計段階からのセキュリティ組み込み', '要件定義・設計フェーズでセキュリティ要件を定義し、脅威モデリングを実施。開発後に対処するのではなく、アーキテクチャレベルでリスクを排除します。' ),
-        2 => array( '脆弱性対策・認証設計・データ保護',   '入力検証・出力エスケープ・パラメータバインディングなどの基本対策を徹底。認証・認可設計ではセッション管理やアクセス制御を厳密に実装し、データは暗号化と適切なアクセス制御で保護します。' ),
-        3 => array( 'コードレビュー・テストによる品質担保', '全てのコードはセキュリティ観点を含むレビューを通過。自動テストによる脆弱性検知、依存パッケージの定期監査を実施し、リリース前の品質を担保します。' ),
+        1 => array( '「作ってから直す」ではなく「最初から守る」', 'プロジェクト開始時にセキュリティリスクを洗い出し、設計に組み込みます。後から対策を追加するよりコストが低く、確実です。' ),
+        2 => array( 'お客様のデータを守る仕組みを標準装備',     '個人情報の暗号化、不正アクセスの防止、安全なログイン機能を最初から実装。「追加料金でセキュリティ対策」ではなく、すべての開発に標準で組み込みます。' ),
+        3 => array( '納品前チェックと継続的な安全管理',         '納品前にセキュリティチェックを実施し、問題がないことを確認してからリリース。使用ツールの脆弱性も定期的に監視し、必要に応じてアップデートを提案します。' ),
     );
 
     foreach ( $security_approach_defaults as $n => $d ) {
@@ -279,7 +280,47 @@ function aoibase_customize_register( $wp_customize ) {
         $add_field( 'aoibase_security_approach', "security_approach_{$n}_desc",  "アプローチ{$n} 説明",     $d[1], 'textarea' );
     }
 
-    $add_field( 'aoibase_security_approach', 'security_cta_text', 'CTAテキスト', 'セキュリティに不安はありませんか？' );
+    $add_field( 'aoibase_security_approach', 'security_cta_text', 'CTAテキスト', '今のサイト、本当に安全ですか？' );
+
+    // --- Section: セキュリティ対策 ---
+    $wp_customize->add_section( 'aoibase_security_measures', array(
+        'title' => 'セキュリティ対策',
+        'panel' => 'aoibase_security',
+    ) );
+
+    $add_field( 'aoibase_security_measures', 'security_measures_intro', 'イントロ文', 'リスクに対して、AOi Baseでは以下の具体的な技術を標準で導入しています。追加料金なし、すべてのプロジェクトに適用します。', 'textarea' );
+
+    $security_measure_defaults = array(
+        1 => array( 'パスキー認証の導入',         'パスワードを使わず、指紋や顔認証でログインできる最新の認証方式。フィッシング詐欺に強く、パスワード流出のリスクをゼロにします。ユーザーの利便性も大幅に向上します。' ),
+        2 => array( 'SSL/HTTPS通信の暗号化',     'サイトとユーザー間のすべての通信を暗号化し、データの盗聴や改ざんを防止。Google検索での評価向上にもつながります。' ),
+        3 => array( 'WAF（不正アクセス防御）',     'Webアプリケーションへの攻撃をリアルタイムで検知・遮断する防御システム。SQLインジェクションやXSSなどの攻撃を自動でブロックします。' ),
+        4 => array( '自動バックアップと復旧体制',   '定期的な自動バックアップにより、万が一の障害やサイバー攻撃でもデータを復元可能。復旧手順も事前に整備し、ダウンタイムを最小限に抑えます。' ),
+    );
+
+    foreach ( $security_measure_defaults as $n => $d ) {
+        $add_field( 'aoibase_security_measures', "security_measure_{$n}_title", "対策{$n} タイトル", $d[0] );
+        $add_field( 'aoibase_security_measures', "security_measure_{$n}_desc",  "対策{$n} 説明",     $d[1], 'textarea' );
+    }
+
+    // --- Section: インシデント対応 ---
+    $wp_customize->add_section( 'aoibase_security_response', array(
+        'title' => 'インシデント対応',
+        'panel' => 'aoibase_security',
+    ) );
+
+    $add_field( 'aoibase_security_response', 'security_response_intro', 'イントロ文', 'どれだけ対策を講じても、リスクをゼロにすることはできません。AOi Baseでは万が一に備えた対応体制を整備しています。', 'textarea' );
+
+    $security_response_defaults = array(
+        1 => array( '異常検知', 'サイトの挙動や不正アクセスの兆候を監視' ),
+        2 => array( '影響調査', '被害範囲の特定と原因の究明' ),
+        3 => array( '緊急対策', '被害拡大の防止と応急処置' ),
+        4 => array( '復旧・報告', 'システム復旧と再発防止策の実施・報告' ),
+    );
+
+    foreach ( $security_response_defaults as $n => $d ) {
+        $add_field( 'aoibase_security_response', "security_response_{$n}_title", "ステップ{$n} タイトル", $d[0] );
+        $add_field( 'aoibase_security_response', "security_response_{$n}_desc",  "ステップ{$n} 説明",     $d[1] );
+    }
 
     // =========================================================================
     // PANEL: aoibase_operability (運用のしやすさ)
@@ -295,15 +336,16 @@ function aoibase_customize_register( $wp_customize ) {
         'panel' => 'aoibase_operability',
     ) );
 
-    $add_field( 'aoibase_operability_features', 'operability_intro', 'イントロ文', 'システムは「作って終わり」ではありません。リリース後の改修・機能追加・障害対応を見据え、保守性と拡張性を最初から設計に組み込むことが重要です。運用負荷の低いシステムは、ビジネス環境の変化にも柔軟に対応できます。', 'textarea' );
+    $add_field( 'aoibase_operability_features', 'operability_header_lead', 'ヘッダーリード文', '「作ってもらったシステム、ちょっとした修正にも時間とお金がかかる」——そんな経験はありませんか？', 'textarea' );
+    $add_field( 'aoibase_operability_features', 'operability_intro', 'イントロ文', 'システムは「作って終わり」ではありません。多くの中小企業が、リリース後の運用で想定外のコストや手間に悩まされています。', 'textarea' );
 
     $operability_feature_defaults = array(
-        1 => array( '高い保守性',               'コードの可読性・モジュール分割・命名規則の統一により、担当者が変わっても迅速に理解・修正できる設計を目指します。' ),
-        2 => array( '柔軟な拡張性',             '新機能の追加や外部サービスとの連携を、既存機能に影響を与えず実現できるアーキテクチャを採用します。' ),
-        3 => array( '運用負荷の最小化',         '自動化・標準化された運用プロセスにより、日常的な運用タスクの負荷を軽減し、本来の業務に集中できる環境を構築します。' ),
-        4 => array( '充実したドキュメント',     '設計意図・運用手順・トラブルシューティングを整備し、属人化を防止。チーム全体でシステムを運用できる体制を支援します。' ),
-        5 => array( 'テスト容易性',             '自動テストが実行しやすい構造設計により、変更時の影響範囲を素早く検証し、安心してリリースできる仕組みを実現します。' ),
-        6 => array( '可観測性（モニタリング）', 'システムの状態をリアルタイムで把握できる仕組みを設計段階から組み込み、障害の予兆検知と迅速な対応を可能にします。' ),
+        1 => array( '小さな修正なのに高額な見積もり', '「ここの文言を変えたいだけなのに、なぜこんなに費用がかかるの？」——作り方が悪いと、簡単な修正でもシステム全体に影響が出て、大がかりな作業になってしまいます。' ),
+        2 => array( '新しい機能を追加できない', '「予約機能をつけたい」「会員ページを追加したい」と思っても、今のシステム構造では対応できないと言われる。ビジネスの成長にシステムが追いつけない状態です。' ),
+        3 => array( '担当者が手作業で回している', 'データの集計、バックアップ、お知らせの更新……すべて手作業。担当者が休むと業務が止まり、ミスも増える。本来の仕事に集中できていません。' ),
+        4 => array( '開発会社しかわからない', 'システムの仕組みを知っているのは開発会社だけ。説明書もなく、担当者が退職したら誰も対応できない。完全に「人質」状態になっていませんか？' ),
+        5 => array( '更新するたびに不具合が出る', '「一箇所直したら別の画面が壊れた」「更新のたびにヒヤヒヤする」——変更の影響を事前に確認する仕組みがないと、改修のたびにリスクを抱えます。' ),
+        6 => array( 'トラブルが起きても原因がわからない', '「サイトが遅い」「エラーが出る」と言われても、いつから・なぜ・どこで起きているのかわからない。原因究明に時間がかかり、お客様への影響が長引きます。' ),
     );
 
     foreach ( $operability_feature_defaults as $n => $d ) {
@@ -318,9 +360,9 @@ function aoibase_customize_register( $wp_customize ) {
     ) );
 
     $operability_approach_defaults = array(
-        1 => array( '改修・機能追加に対応しやすい仕組み', '疎結合なアーキテクチャ設計により、ある機能を変更しても他の機能に影響が波及しにくい構造を実現。ビジネス要件の変化に素早く追従できます。' ),
-        2 => array( '一貫した体制でのサポート',           '設計・開発・運用を一貫して担当することで、システムの全体像を把握したうえでの素早い問題対応・改善提案が可能です。開発チームがそのまま運用フェーズに入るため、引き継ぎロスが発生しません。' ),
-        3 => array( 'モニタリング・ログ設計',             'アプリケーションログ・パフォーマンスメトリクス・エラー通知を設計段階で組み込み、障害の予兆検知と迅速なインシデント対応を実現。運用チームが「状況を把握できる」仕組みを構築します。' ),
+        1 => array( '「作って終わり」にしない設計', '開発の最初から「リリース後にどう使うか」を一緒に考えます。将来の機能追加や担当者の交代まで想定した設計で、長く使えるシステムを作ります。' ),
+        2 => array( '設計から運用まで、同じチームが担当', '開発したチームがそのまま運用もサポート。システムの中身を知り尽くした人間が対応するので、問い合わせへの回答も素早く、的確です。引き継ぎミスもありません。' ),
+        3 => array( '問題を未然に防ぐ仕組みづくり', 'トラブルが起きてから慌てるのではなく、異常を早期に検知して対処する仕組みを最初から組み込みます。「気づいたら直っていた」という安心感を提供します。' ),
     );
 
     foreach ( $operability_approach_defaults as $n => $d ) {
@@ -328,7 +370,49 @@ function aoibase_customize_register( $wp_customize ) {
         $add_field( 'aoibase_operability_approach', "operability_approach_{$n}_desc",  "アプローチ{$n} 説明",     $d[1], 'textarea' );
     }
 
-    $add_field( 'aoibase_operability_approach', 'operability_cta_text', 'CTAテキスト', '運用しやすいシステムを一緒に作りませんか？' );
+    $add_field( 'aoibase_operability_approach', 'operability_cta_text', 'CTAテキスト', '今のシステム、運用に困っていませんか？' );
+
+    // --- Section: 運用の解決策 ---
+    $wp_customize->add_section( 'aoibase_operability_solutions', array(
+        'title'    => '運用の解決策',
+        'panel'    => 'aoibase_operability',
+        'priority' => 30,
+    ) );
+
+    $add_field( 'aoibase_operability_solutions', 'operability_solutions_intro', 'イントロ文', 'これらの悩みが起きないよう、AOi Baseでは最初から「運用しやすさ」を設計に組み込みます。追加料金なし、すべてのプロジェクトに標準適用します。', 'textarea' );
+
+    $operability_solution_defaults = array(
+        1 => array( '修正・追加がしやすい設計', '機能をブロックのように独立させた設計で、一箇所を変えても他に影響しません。「ちょっとした修正」がちゃんと「ちょっとした費用」で済むシステムを作ります。' ),
+        2 => array( '自動化で手間を最小限に', 'データの集計、バックアップ、更新通知など、定型作業を自動化。担当者の負担を減らし、ミスも防ぎます。人に依存しない運用体制を構築します。' ),
+        3 => array( 'わかりやすい操作マニュアル', '「開発会社にしかわからない」をなくします。操作手順・トラブル時の対処法を、専門知識がなくても読めるマニュアルとしてお渡しします。' ),
+        4 => array( 'システムの健康状態を見える化', 'サイトの表示速度、エラーの発生状況、アクセス数の変化を自動で記録・通知。問題が大きくなる前に気づける仕組みを標準で導入します。' ),
+    );
+
+    foreach ( $operability_solution_defaults as $n => $d ) {
+        $add_field( 'aoibase_operability_solutions', "operability_solution_{$n}_title", "解決策{$n} タイトル", $d[0] );
+        $add_field( 'aoibase_operability_solutions', "operability_solution_{$n}_desc",  "解決策{$n} 説明",     $d[1], 'textarea' );
+    }
+
+    // --- Section: 継続サポート ---
+    $wp_customize->add_section( 'aoibase_operability_support', array(
+        'title'    => '継続サポート',
+        'panel'    => 'aoibase_operability',
+        'priority' => 40,
+    ) );
+
+    $add_field( 'aoibase_operability_support', 'operability_support_intro', 'イントロ文', 'システムは完成してからが本番。AOi Baseではリリース後も継続的にサポートし、お客様のビジネス成長を支え続けます。', 'textarea' );
+
+    $operability_support_defaults = array(
+        1 => array( '定期点検', '月次でシステムの状態を確認・報告' ),
+        2 => array( '改善提案', '利用状況に基づいた機能改善のご提案' ),
+        3 => array( '迅速対応', '不具合やご要望に素早く対応' ),
+        4 => array( '成長支援', 'ビジネス拡大に合わせたシステム拡張' ),
+    );
+
+    foreach ( $operability_support_defaults as $n => $d ) {
+        $add_field( 'aoibase_operability_support', "operability_support_{$n}_title", "ステップ{$n} タイトル", $d[0] );
+        $add_field( 'aoibase_operability_support', "operability_support_{$n}_desc",  "ステップ{$n} 説明",     $d[1] );
+    }
 
     // =========================================================================
     // PANEL: aoibase_contact (お問い合わせ)

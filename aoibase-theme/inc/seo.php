@@ -194,7 +194,7 @@ add_action( 'wp_head', 'aoibase_canonical_url', 4 );
 // -----------------------------------------------------------------------
 
 function aoibase_jsonld_organization() {
-	if ( ! is_front_page() ) {
+	if ( ! is_front_page() || aoibase_is_yoast_active() ) {
 		return;
 	}
 
@@ -243,6 +243,10 @@ add_action( 'wp_head', 'aoibase_jsonld_organization', 5 );
  * @return array
  */
 function aoibase_document_title_parts( $title_parts ) {
+	if ( aoibase_is_yoast_active() ) {
+		return $title_parts;
+	}
+
 	if ( is_front_page() ) {
 		$title_parts['title'] = 'AOi Base｜Web・アプリ・システム開発';
 		// Remove site name separator for front page.

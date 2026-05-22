@@ -21,6 +21,8 @@ $news_intro = get_theme_mod( 'news_intro', 'AOi Baseの最新情報・お知ら�
     transition: transform 200ms ease, box-shadow 200ms ease;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 380px;
   }
   .news-card:hover {
     transform: translateY(-4px);
@@ -74,26 +76,16 @@ $news_query = new WP_Query( array(
 <!-- ===== NEWS GRID ===== -->
 <section class="py-16 md:py-20 bg-[#F8FAFC]">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="flex flex-wrap justify-center gap-6">
       <?php while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
       <a href="<?php the_permalink(); ?>" class="news-card group cursor-pointer">
-        <div class="relative h-48 overflow-hidden <?php echo has_post_thumbnail() ? '' : 'bg-gradient-to-br from-[#0369A1] to-[#1B2A4A] flex items-center justify-center'; ?>">
-          <?php if ( has_post_thumbnail() ) : ?>
+        <?php if ( has_post_thumbnail() ) : ?>
+        <div class="relative h-48 overflow-hidden">
             <?php the_post_thumbnail( 'medium_large', array( 'class' => 'w-full h-full object-cover transition-transform duration-300 group-hover:scale-105', 'loading' => 'lazy' ) ); ?>
-          <?php else : ?>
-            <svg class="w-12 h-12 text-white/20" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-          <?php endif; ?>
         </div>
+        <?php endif; ?>
         <div class="p-6 flex-1 flex flex-col">
-          <div class="flex items-center gap-3 mb-3">
-            <time class="font-['Poppins'] text-xs text-[#0369A1] tracking-wider" style="font-weight:500;" datetime="<?php echo esc_attr(get_the_date('Y-m-d')); ?>"><?php echo esc_html(get_the_date('Y.m.d')); ?></time>
-            <?php
-            $cats = get_the_category();
-            if ( ! empty( $cats ) ) :
-            ?>
-              <span class="px-2 py-0.5 text-[10px] font-semibold text-[#0369A1] bg-[#EFF6FF] rounded-full font-['Poppins']"><?php echo esc_html( $cats[0]->name ); ?></span>
-            <?php endif; ?>
-          </div>
+          <time class="font-['Poppins'] text-xs text-[#0369A1] tracking-wider mb-3" style="font-weight:500;" datetime="<?php echo esc_attr(get_the_date('Y-m-d')); ?>"><?php echo esc_html(get_the_date('Y.m.d')); ?></time>
           <h3 class="text-base font-bold text-[#1B2A4A] mb-2 leading-snug transition-colors duration-200 line-clamp-2"><?php the_title(); ?></h3>
           <p class="text-sm text-[#475569] leading-relaxed line-clamp-2 flex-1"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 50, '...' ) ); ?></p>
         </div>
