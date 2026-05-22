@@ -26,11 +26,38 @@ $has_genres = ! is_wp_error( $genres ) && ! empty( $genres );
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%;
+    width: 280px;
+    flex-shrink: 0;
     transition: transform 200ms ease, box-shadow 200ms ease;
   }
   @media (min-width: 640px) {
-    .pf-card { width: 480px; }
+    .pf-card { width: 480px; flex-shrink: 1; }
+  }
+  .pf-card-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 6px 0 8px;
+  }
+  .pf-card-row.pf-single {
+    justify-content: center;
+  }
+  .pf-card-row > .pf-card {
+    scroll-snap-align: center;
+  }
+  .pf-card-row::-webkit-scrollbar { height: 4px; }
+  .pf-card-row::-webkit-scrollbar-track { background: transparent; }
+  .pf-card-row::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+  @media (min-width: 640px) {
+    .pf-card-row {
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow-x: visible;
+      scroll-snap-type: none;
+      padding-bottom: 0;
+    }
   }
   .pf-card {
     box-shadow: 0 4px 16px rgba(15,23,42,0.08);
@@ -81,6 +108,24 @@ $has_genres = ! is_wp_error( $genres ) && ! empty( $genres );
     background: #1B2A4A;
     transform: translateY(-1px);
     box-shadow: 0 4px 16px rgba(3,105,161,0.25);
+  }
+  .pf-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .pf-tech-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0369A1;
+    background: #EFF6FF;
+    border-radius: 9999px;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
   }
   @media (min-width: 640px) {
     .pf-thumb { max-width: 280px; }
@@ -138,8 +183,8 @@ foreach ( $detail_children as $child ) {
             'field'    => 'term_id',
             'terms'    => $genre->term_id,
         ) ),
-        'orderby'        => 'date',
-        'order'          => 'DESC',
+        'orderby'        => 'title',
+        'order'          => 'ASC',
     ) );
 
     if ( ! $genre_posts->have_posts() ) {
@@ -162,7 +207,7 @@ foreach ( $detail_children as $child ) {
         <div class="w-12 h-0.5 bg-[#0369A1] mt-5"></div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-5">
+      <div class="pf-card-row<?php echo ( $genre_posts->post_count <= 1 ) ? ' pf-single' : ''; ?>">
         <?php while ( $genre_posts->have_posts() ) : $genre_posts->the_post();
           $p_id      = get_the_ID();
           $p_summary = get_post_meta( $p_id, '_aoibase_summary', true );
@@ -185,6 +230,17 @@ foreach ( $detail_children as $child ) {
               </div>
             <?php endif; ?>
           </div>
+
+          <?php
+            $p_techs = get_the_terms( $p_id, 'tech_stack' );
+            if ( $p_techs && ! is_wp_error( $p_techs ) ) :
+          ?>
+          <div class="pf-tech">
+            <?php foreach ( $p_techs as $tech ) : ?>
+              <span class="pf-tech-badge"><?php echo esc_html( $tech->name ); ?></span>
+            <?php endforeach; ?>
+          </div>
+          <?php endif; ?>
 
           <?php
             $p_title    = get_the_title();
