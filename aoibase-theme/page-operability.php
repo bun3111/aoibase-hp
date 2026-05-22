@@ -6,75 +6,20 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+get_header();
 ?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>運用のしやすさとは？｜株式会社AOi Base</title>
-  <meta name="description" content="運用しやすいシステムとは何か。保守性・拡張性の高い設計とAOi Baseの運用設計アプローチを解説します。">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', 'Poppins', sans-serif; color: #0F172A; margin: 0; }
-    #site-nav.scrolled { box-shadow: 0 2px 20px rgba(15,23,42,0.08); }
-    .service-card {
-      background: #fff; border: 1px solid #F1F5F9; border-radius: 16px;
-      padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      display: flex; flex-direction: column;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(3,105,161,0.12); border-color: #BFDBFE; }
-    .aoibase-fade-in { opacity: 0; transform: translateY(16px); transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
-    .aoibase-fade-in-visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) { .aoibase-fade-in { opacity: 1; transform: none; transition: none; } }
-    @media (max-width: 767px) { .feature-grid-3 { grid-template-columns: 1fr !important; } }
-  </style>
-  <?php wp_head(); ?>
-</head>
-<body class="bg-white">
 
-<a href="#main-content" style="position:absolute;top:-40px;left:0;background:#0369A1;color:#fff;padding:8px 16px;z-index:100;text-decoration:none;font-size:14px;font-weight:600;">本文へスキップ</a>
-
-<!-- ===== NAVIGATION ===== -->
-<header id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200" style="transition: box-shadow 200ms ease;">
-  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-12 md:h-20">
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center cursor-pointer group" aria-label="AOi Base トップページ">
-      <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo-aoi.png" alt="AOi Base" class="h-5 md:h-12 w-auto" loading="eager" decoding="async">
-    </a>
-    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">TOP</a>
-      <a href="<?php echo esc_url(home_url('/news/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">NEWS</a>
-      <a href="<?php echo esc_url(home_url('/flow/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">開発の流れ</a>
-      <a href="<?php echo esc_url(home_url('/achievements/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">事例</a>
-      <a href="<?php echo esc_url(home_url('/company/')); ?>" class="font-['Poppins'] text-xs tracking-widest text-[#0F172A] hover:text-[#0369A1] transition-colors duration-200 uppercase cursor-pointer" style="font-weight:600;">企業情報</a>
-    </nav>
-    <div class="flex items-center gap-3">
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hidden md:inline-flex items-center gap-2 bg-[#0369A1] hover:bg-[#1B2A4A] text-white text-xs font-['Poppins'] px-5 py-2.5 cursor-pointer transition-colors duration-200" style="font-weight:600; letter-spacing:0.1em;">お問い合わせ</a>
-      <button id="nav-toggle" aria-label="メニューを開く" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer">
-        <span class="block w-6 h-0.5 bg-[#1B2A4A]"></span>
-        <span class="block w-6 h-0.5 bg-[#1B2A4A]"></span>
-        <span class="block w-6 h-0.5 bg-[#1B2A4A]"></span>
-      </button>
-    </div>
-  </div>
-  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100">
-    <nav class="flex flex-col px-6 py-4 gap-0">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-nav-link font-['Poppins'] text-xs tracking-widest uppercase text-[#0F172A] hover:text-[#0369A1] py-3 border-b border-slate-100 transition-colors duration-200" style="font-weight:600;">TOP</a>
-      <a href="<?php echo esc_url(home_url('/news/')); ?>" class="mobile-nav-link font-['Poppins'] text-xs tracking-widest uppercase text-[#0F172A] hover:text-[#0369A1] py-3 border-b border-slate-100 transition-colors duration-200" style="font-weight:600;">NEWS</a>
-      <a href="<?php echo esc_url(home_url('/flow/')); ?>" class="mobile-nav-link font-['Poppins'] text-xs tracking-widest uppercase text-[#0F172A] hover:text-[#0369A1] py-3 border-b border-slate-100 transition-colors duration-200" style="font-weight:600;">開発の流れ</a>
-      <a href="<?php echo esc_url(home_url('/achievements/')); ?>" class="mobile-nav-link font-['Poppins'] text-xs tracking-widest uppercase text-[#0F172A] hover:text-[#0369A1] py-3 border-b border-slate-100 transition-colors duration-200" style="font-weight:600;">事例</a>
-      <a href="<?php echo esc_url(home_url('/company/')); ?>" class="mobile-nav-link font-['Poppins'] text-xs tracking-widest uppercase text-[#0F172A] hover:text-[#0369A1] py-3 border-b border-slate-100 transition-colors duration-200" style="font-weight:600;">企業情報</a>
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mt-4 inline-flex items-center justify-center gap-2 bg-[#0369A1] text-white text-xs font-['Poppins'] px-5 py-3 cursor-pointer" style="font-weight:600;">お問い合わせ</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main-content">
+<style>
+  .service-card {
+    background: #fff; border: 1px solid #F1F5F9; border-radius: 16px;
+    padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(3,105,161,0.12); border-color: #BFDBFE; }
+  @media (max-width: 767px) { .feature-grid-3 { grid-template-columns: 1fr !important; } }
+</style>
 
 <!-- ===== PAGE HEADER ===== -->
 <section style="background:#0F172A;padding:0;overflow:hidden;position:relative;padding-top:80px;min-height:340px;display:flex;align-items:center;">
@@ -90,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <nav aria-label="パンくずリスト" style="margin-bottom:24px;">
       <ol style="display:inline-flex;align-items:center;gap:8px;list-style:none;padding:0;margin:0;">
         <li><a href="<?php echo esc_url(home_url('/')); ?>" style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;letter-spacing:0.1em;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">TOP</a></li>
-        <li style="font-size:11px;color:rgba(255,255,255,0.2);">›</li>
+        <li style="font-size:11px;color:rgba(255,255,255,0.2);">&#8250;</li>
         <li><span aria-current="page" style="font-family:'Poppins',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;">OPERABILITY</span></li>
       </ol>
     </nav>
@@ -120,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <span style="font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:600;color:#0369A1;letter-spacing:0.15em;">運用しやすいシステムの特徴</span>
       </div>
     </div>
-    <p style="font-family:'Noto Sans JP',sans-serif;font-size:16px;color:#475569;line-height:1.9;margin:0 0 56px;max-width:720px;">システムは「作って終わり」ではありません。リリース後の改修・機能追加・障害対応を見据え、保守性と拡張性を最初から設計に組み込むことが重要です。運用負荷の低いシステムは、ビジネス環境の変化にも柔軟に対応できます。</p>
+    <p style="font-family:'Noto Sans JP',sans-serif;font-size:16px;color:#475569;line-height:1.9;margin:0 0 56px;max-width:720px;"><?php echo esc_html( get_theme_mod( 'operability_intro', 'システムは「作って終わり」ではありません。リリース後の改修・機能追加・障害対応を見据え、保守性と拡張性を最初から設計に組み込むことが重要です。運用負荷の低いシステムは、ビジネス環境の変化にも柔軟に対応できます。' ) ); ?></p>
 
     <!-- 特徴カード -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="feature-grid-3">
@@ -133,10 +78,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">MAINTAINABILITY</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">高い保守性</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_1_title', '高い保守性' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">コードの可読性・モジュール分割・命名規則の統一により、担当者が変わっても迅速に理解・修正できる設計を目指します。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_1_desc', 'コードの可読性・モジュール分割・命名規則の統一により、担当者が変わっても迅速に理解・修正できる設計を目指します。' ) ); ?></p>
       </div>
 
       <!-- Card: 拡張性 -->
@@ -147,10 +92,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">SCALABILITY</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">柔軟な拡張性</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_2_title', '柔軟な拡張性' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">新機能の追加や外部サービスとの連携を、既存機能に影響を与えず実現できるアーキテクチャを採用します。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_2_desc', '新機能の追加や外部サービスとの連携を、既存機能に影響を与えず実現できるアーキテクチャを採用します。' ) ); ?></p>
       </div>
 
       <!-- Card: 運用負荷 -->
@@ -161,10 +106,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">LOW OVERHEAD</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">運用負荷の最小化</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_3_title', '運用負荷の最小化' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">自動化・標準化された運用プロセスにより、日常的な運用タスクの負荷を軽減し、本来の業務に集中できる環境を構築します。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_3_desc', '自動化・標準化された運用プロセスにより、日常的な運用タスクの負荷を軽減し、本来の業務に集中できる環境を構築します。' ) ); ?></p>
       </div>
 
       <!-- Card: ドキュメント -->
@@ -175,10 +120,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">DOCUMENTATION</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">充実したドキュメント</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_4_title', '充実したドキュメント' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">設計意図・運用手順・トラブルシューティングを整備し、属人化を防止。チーム全体でシステムを運用できる体制を支援します。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_4_desc', '設計意図・運用手順・トラブルシューティングを整備し、属人化を防止。チーム全体でシステムを運用できる体制を支援します。' ) ); ?></p>
       </div>
 
       <!-- Card: テスト -->
@@ -189,10 +134,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">TESTABILITY</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">テスト容易性</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_5_title', 'テスト容易性' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">自動テストが実行しやすい構造設計により、変更時の影響範囲を素早く検証し、安心してリリースできる仕組みを実現します。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_5_desc', '自動テストが実行しやすい構造設計により、変更時の影響範囲を素早く検証し、安心してリリースできる仕組みを実現します。' ) ); ?></p>
       </div>
 
       <!-- Card: 可観測性 -->
@@ -203,10 +148,10 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div>
             <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#94A3B8;letter-spacing:0.15em;">OBSERVABILITY</div>
-            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;">可観測性（モニタリング）</h3>
+            <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:700;color:#0F172A;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_6_title', '可観測性（モニタリング）' ) ); ?></h3>
           </div>
         </div>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;">システムの状態をリアルタイムで把握できる仕組みを設計段階から組み込み、障害の予兆検知と迅速な対応を可能にします。</p>
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#475569;line-height:1.8;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_feature_6_desc', 'システムの状態をリアルタイムで把握できる仕組みを設計段階から組み込み、障害の予兆検知と迅速な対応を可能にします。' ) ); ?></p>
       </div>
 
     </div>
@@ -240,8 +185,8 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
         </div>
         <div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;">改修・機能追加に対応しやすい仕組み</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;">疎結合なアーキテクチャ設計により、ある機能を変更しても他の機能に影響が波及しにくい構造を実現。ビジネス要件の変化に素早く追従できます。</p>
+          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;"><?php echo esc_html( get_theme_mod( 'operability_approach_1_title', '改修・機能追加に対応しやすい仕組み' ) ); ?></h3>
+          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_approach_1_desc', '疎結合なアーキテクチャ設計により、ある機能を変更しても他の機能に影響が波及しにくい構造を実現。ビジネス要件の変化に素早く追従できます。' ) ); ?></p>
         </div>
       </div>
 
@@ -254,8 +199,8 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
         </div>
         <div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;">一貫した体制でのサポート</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;">設計・開発・運用を一貫して担当することで、システムの全体像を把握したうえでの素早い問題対応・改善提案が可能です。開発チームがそのまま運用フェーズに入るため、引き継ぎロスが発生しません。</p>
+          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;"><?php echo esc_html( get_theme_mod( 'operability_approach_2_title', '一貫した体制でのサポート' ) ); ?></h3>
+          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_approach_2_desc', '設計・開発・運用を一貫して担当することで、システムの全体像を把握したうえでの素早い問題対応・改善提案が可能です。開発チームがそのまま運用フェーズに入るため、引き継ぎロスが発生しません。' ) ); ?></p>
         </div>
       </div>
 
@@ -268,8 +213,8 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
         </div>
         <div>
-          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;">モニタリング・ログ設計</h3>
-          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;">アプリケーションログ・パフォーマンスメトリクス・エラー通知を設計段階で組み込み、障害の予兆検知と迅速なインシデント対応を実現。運用チームが「状況を把握できる」仕組みを構築します。</p>
+          <h3 style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;color:#0F172A;margin:0 0 12px;"><?php echo esc_html( get_theme_mod( 'operability_approach_3_title', 'モニタリング・ログ設計' ) ); ?></h3>
+          <p style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#475569;line-height:1.9;margin:0;"><?php echo esc_html( get_theme_mod( 'operability_approach_3_desc', 'アプリケーションログ・パフォーマンスメトリクス・エラー通知を設計段階で組み込み、障害の予兆検知と迅速なインシデント対応を実現。運用チームが「状況を把握できる」仕組みを構築します。' ) ); ?></p>
         </div>
       </div>
 
@@ -286,7 +231,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(202,138,4,0.12);border:1px solid rgba(202,138,4,0.3);border-radius:100px;padding:5px 16px;margin-bottom:28px;">
       <span style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:#CA8A04;letter-spacing:0.15em;">CONTACT US</span>
     </div>
-    <h2 style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#fff;line-height:1.6;margin:0 0 20px;">運用しやすいシステムを<br>一緒に作りませんか？</h2>
+    <h2 style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#fff;line-height:1.6;margin:0 0 20px;"><?php echo esc_html( get_theme_mod( 'operability_cta_text', '運用しやすいシステムを一緒に作りませんか？' ) ); ?></h2>
     <p style="font-family:'Noto Sans JP',sans-serif;font-size:16px;color:rgba(255,255,255,0.6);line-height:1.9;margin:0 0 44px;">既存システムの運用改善から新規開発まで、お気軽にご相談ください。<br>最適なアーキテクチャと運用体制をご提案します。</p>
     <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
       <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="display:inline-flex;align-items:center;gap:10px;background:#B45309;color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:700;padding:16px 40px;border-radius:100px;text-decoration:none;transition:all 200ms;box-shadow:0 8px 24px rgba(180,83,9,0.35);" onmouseover="this.style.background='#D97706';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#B45309';this.style.transform='translateY(0)'">
@@ -297,101 +242,4 @@ if ( ! defined( 'ABSPATH' ) ) {
   </div>
 </section>
 
-</main>
-
-<!-- ===== BOTTOM CTA BAR ===== -->
-<div class="flex flex-wrap">
-  <a href="<?php echo esc_url(home_url('/company/')); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#0F172A] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
-    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">COMPANY</p><p class="text-xs sm:text-lg font-bold text-white">会社概要</p></div>
-    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-  </a>
-  <a href="<?php echo esc_url(home_url('/achievements/')); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#111D35] hover:bg-[#0369A1] transition-all duration-200 cursor-pointer border-r border-white/10">
-    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/50 group-hover:text-white/70 font-['Poppins']">WORKS</p><p class="text-xs sm:text-lg font-bold text-white">事例</p></div>
-    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-  </a>
-  <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="group flex flex-1 min-w-0 items-center justify-between px-4 sm:px-8 py-5 sm:py-7 bg-[#B45309] hover:bg-[#D97706] transition-all duration-200 cursor-pointer">
-    <div><p class="text-[9px] sm:text-xs font-bold tracking-[0.25em] text-white/70 group-hover:text-white font-['Poppins']">CONTACT</p><p class="text-xs sm:text-lg font-bold text-white">お問い合わせ</p></div>
-    <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-  </a>
-</div>
-
-<!-- ===== FOOTER ===== -->
-<footer class="bg-[#111D35] pt-16 pb-0">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-white/10">
-      <div>
-        <span class="text-2xl font-extrabold tracking-tight font-['Poppins']"><span class="text-white">AOi </span><span class="text-[#0369A1]">Base</span></span>
-        <p class="text-sm text-white/50 leading-loose mt-5 mb-6">構想をカタチに</p>
-      </div>
-      <div>
-        <h3 class="text-xs font-bold tracking-[0.3em] text-white/40 font-['Poppins'] uppercase mb-6">CONTACT INFO</h3>
-        <div class="space-y-4">
-          <p class="text-xs text-white/70">株式会社AOi Base</p>
-          <p class="text-xs text-white/50">〒761-8046 香川県高松市川部町240番地4</p>
-          <p class="text-xs text-white/50">アースA203</p>
-          <p class="text-xs text-white/50 font-['Poppins']">info@aoibase.jp</p>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 py-5">
-      <p class="text-xs text-white/20 font-['Poppins']">&copy; 2026 AOi Base Inc. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<!-- ===== SIDE CTA ===== -->
-<div class="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-0.5" id="side-cta">
-  <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="flex flex-col items-center gap-3 bg-[#0369A1] hover:bg-[#B45309] text-white px-3 py-6 transition-all duration-200 cursor-pointer shadow-xl hover:-translate-x-1 rounded-l-xl" aria-label="無料相談">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.953 9.953 0 01-4.814-1.229L3 20l1.229-4.186A8.955 8.955 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-    <span class="text-xs font-bold [writing-mode:vertical-rl] tracking-widest">無料相談</span>
-  </a>
-</div>
-
-<!-- ===== PAGE TOP ===== -->
-<button id="page-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="ページトップへ" class="fixed bottom-8 right-16 z-50 flex flex-col items-center justify-center w-14 h-14 bg-[#1B2A4A] hover:bg-[#0369A1] text-white rounded-full shadow-xl transition-all duration-200 cursor-pointer opacity-0 translate-y-4 pointer-events-none">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-  <span class="text-[9px] font-bold tracking-wider font-['Poppins'] mt-0.5">TOP</span>
-</button>
-
-<script>
-// NAV scroll shadow
-const nav = document.getElementById('site-nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
-});
-// Mobile menu toggle
-document.getElementById('nav-toggle').addEventListener('click', () => {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-});
-// Mobile nav link close
-document.querySelectorAll('.mobile-nav-link').forEach(link => {
-  link.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
-});
-// Page top button
-const pageTopBtn = document.getElementById('page-top-btn');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    pageTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-    pageTopBtn.classList.add('opacity-100', 'translate-y-0');
-  } else {
-    pageTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-    pageTopBtn.classList.remove('opacity-100', 'translate-y-0');
-  }
-});
-// Fade-in observer
-if (typeof IntersectionObserver !== 'undefined') {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('aoibase-fade-in-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.aoibase-fade-in').forEach(el => observer.observe(el));
-}
-</script>
-
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>

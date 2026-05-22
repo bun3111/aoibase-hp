@@ -156,6 +156,8 @@ add_action( 'wp_head', 'aoibase_site_icon', 5 );
 // -----------------------------------------------------------------------
 
 require_once get_template_directory() . '/inc/cpt-achievement.php';
+require_once get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/seo.php';
 
 // -----------------------------------------------------------------------
 // Achievement Archive Query Modification
