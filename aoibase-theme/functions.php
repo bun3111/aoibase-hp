@@ -49,13 +49,12 @@ add_action( 'after_setup_theme', 'aoibase_theme_setup' );
 // -----------------------------------------------------------------------
 
 function aoibase_enqueue_assets() {
-	// Tailwind CSS CDN
-	wp_enqueue_script(
-		'tailwindcss',
-		'https://cdn.tailwindcss.com',
+	// Tailwind CSS (built)
+	wp_enqueue_style(
+		'aoibase-tailwind',
+		get_template_directory_uri() . '/assets/css/tailwind.min.css',
 		array(),
-		null,
-		false // load in <head>
+		wp_get_theme()->get( 'Version' )
 	);
 
 	// Google Fonts: Poppins + Noto Sans JP
@@ -79,6 +78,18 @@ function aoibase_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'aoibase_enqueue_assets' );
+
+// -----------------------------------------------------------------------
+// Restrict Contact Form 7 assets to contact page only
+// -----------------------------------------------------------------------
+
+function aoibase_dequeue_cf7_assets() {
+	if ( ! is_page( 'contact' ) ) {
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'contact-form-7' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'aoibase_dequeue_cf7_assets', 20 );
 
 // -----------------------------------------------------------------------
 // Disable WordPress Emoji Scripts

@@ -48,6 +48,24 @@ function aoibase_preconnect_hints() {
 add_action( 'wp_head', 'aoibase_preconnect_hints', 1 );
 
 // -----------------------------------------------------------------------
+// 2b. Preload Hero Image (priority 1, front page only)
+// -----------------------------------------------------------------------
+
+function aoibase_preload_hero_image() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+
+	$theme_uri = get_template_directory_uri();
+	$pc_img    = $theme_uri . '/assets/images/hero-main-pc.png';
+	$sp_img    = $theme_uri . '/assets/images/hero-main-sp.png';
+
+	echo '<link rel="preload" as="image" href="' . esc_url( $pc_img ) . '" media="(min-width: 1024px)" />' . "\n";
+	echo '<link rel="preload" as="image" href="' . esc_url( $sp_img ) . '" media="(max-width: 1023px)" />' . "\n";
+}
+add_action( 'wp_head', 'aoibase_preload_hero_image', 1 );
+
+// -----------------------------------------------------------------------
 // Helper: Build OGP / Twitter data array for current page
 // -----------------------------------------------------------------------
 
