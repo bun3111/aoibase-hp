@@ -57,13 +57,7 @@ function aoibase_enqueue_assets() {
 		wp_get_theme()->get( 'Version' )
 	);
 
-	// Google Fonts: Poppins + Noto Sans JP
-	wp_enqueue_style(
-		'aoibase-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap',
-		array(),
-		null
-	);
+	// Google Fonts loaded async via aoibase_google_fonts_async() in wp_head
 
 	// Custom JS (defer, in footer)
 	wp_enqueue_script(
@@ -80,21 +74,15 @@ function aoibase_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'aoibase_enqueue_assets' );
 
 // -----------------------------------------------------------------------
-// Non-render-blocking Google Fonts
+// Non-render-blocking Google Fonts (direct output, bypasses WP tag filters)
 // -----------------------------------------------------------------------
 
-function aoibase_async_google_fonts( $tag, $handle ) {
-	if ( 'aoibase-google-fonts' === $handle ) {
-		$tag = preg_replace(
-			'/media=[\'"]all[\'"]/',
-			'media="print" onload="this.media=\'all\'"',
-			$tag
-		);
-		$tag .= '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>' . "\n";
-	}
-	return $tag;
+function aoibase_google_fonts_async() {
+	$url = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap';
+	echo '<link rel="stylesheet" href="' . esc_url( $url ) . '" media="print" onload="this.media=\'all\'">' . "\n";
+	echo '<noscript><link rel="stylesheet" href="' . esc_url( $url ) . '"></noscript>' . "\n";
 }
-add_filter( 'style_loader_tag', 'aoibase_async_google_fonts', 10, 2 );
+add_action( 'wp_head', 'aoibase_google_fonts_async', 2 );
 
 // -----------------------------------------------------------------------
 // Restrict Contact Form 7 assets to contact page only
