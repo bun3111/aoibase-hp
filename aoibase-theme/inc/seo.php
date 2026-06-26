@@ -57,11 +57,11 @@ function aoibase_preload_hero_image() {
 	}
 
 	$theme_uri = get_template_directory_uri();
-	$pc_img    = $theme_uri . '/assets/images/hero-main-pc.png';
-	$sp_img    = $theme_uri . '/assets/images/hero-main-sp.png';
+	$pc_img    = $theme_uri . '/assets/images/hero-main-pc.webp';
+	$sp_img    = $theme_uri . '/assets/images/hero-main-sp.webp';
 
-	echo '<link rel="preload" as="image" href="' . esc_url( $pc_img ) . '" media="(min-width: 1024px)" />' . "\n";
-	echo '<link rel="preload" as="image" href="' . esc_url( $sp_img ) . '" media="(max-width: 1023px)" />' . "\n";
+	echo '<link rel="preload" as="image" type="image/webp" href="' . esc_url( $pc_img ) . '" media="(min-width: 1024px)" />' . "\n";
+	echo '<link rel="preload" as="image" type="image/webp" href="' . esc_url( $sp_img ) . '" media="(max-width: 1023px)" />' . "\n";
 }
 add_action( 'wp_head', 'aoibase_preload_hero_image', 1 );
 
@@ -251,7 +251,66 @@ function aoibase_jsonld_organization() {
 add_action( 'wp_head', 'aoibase_jsonld_organization', 5 );
 
 // -----------------------------------------------------------------------
-// 7. Document Title Filter (priority 10)
+// 7. Service JSON-LD (priority 6, front page only)
+// -----------------------------------------------------------------------
+
+function aoibase_jsonld_service() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+
+	$schema = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'ProfessionalService',
+		'name'        => get_theme_mod( 'company_name', '株式会社AOi Base' ),
+		'url'         => home_url( '/' ),
+		'description' => 'AOi Baseは香川県高松市を拠点に、Webサイト・業務アプリ・システム開発を手がける会社です。',
+		'areaServed'  => array(
+			'@type' => 'Country',
+			'name'  => 'JP',
+		),
+		'hasOfferCatalog' => array(
+			'@type'           => 'OfferCatalog',
+			'name'            => '開発サービス',
+			'itemListElement' => array(
+				array(
+					'@type' => 'Offer',
+					'itemOffered' => array(
+						'@type'       => 'Service',
+						'name'        => 'Webサイト制作',
+						'description' => 'コーポレートサイト・LP・ECサイトの企画・デザイン・開発',
+					),
+				),
+				array(
+					'@type' => 'Offer',
+					'itemOffered' => array(
+						'@type'       => 'Service',
+						'name'        => '業務アプリ開発',
+						'description' => 'LINE Bot・業務自動化・社内ツールなどのアプリケーション開発',
+					),
+				),
+				array(
+					'@type' => 'Offer',
+					'itemOffered' => array(
+						'@type'       => 'Service',
+						'name'        => 'システム開発',
+						'description' => 'API連携・データベース設計・クラウドインフラ構築',
+					),
+				),
+			),
+		),
+	);
+
+	$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+	echo '<script type="application/ld+json">' . "\n";
+	echo $json . "\n";
+	echo '</script>' . "\n";
+}
+add_action( 'wp_head', 'aoibase_jsonld_service', 6 );
+
+// -----------------------------------------------------------------------
+// 8. Document Title Filter (priority 10)
 // -----------------------------------------------------------------------
 
 /**
