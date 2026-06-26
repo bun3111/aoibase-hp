@@ -85,7 +85,7 @@
     <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.webp" type="image/webp">
     <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.png" type="image/png">
     <source srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.webp" type="image/webp">
-    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.png" alt="AOi Base" class="w-full h-auto block" loading="eager">
+    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.png" alt="AOi Base" class="w-full h-auto block" width="1672" height="941" loading="eager">
   </picture>
   <div class="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-2">
     <span class="font-['Poppins'] text-[9px] tracking-[0.3em] text-[#1B2A4A] uppercase opacity-60" style="writing-mode:vertical-rl;font-weight:500;">Scroll</span>
@@ -162,7 +162,10 @@
         <div style="position:absolute;top:-30px;left:-30px;width:320px;height:320px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:40% 60% 60% 40%/40% 40% 60% 60%;z-index:0;"></div>
         <div style="position:absolute;bottom:-20px;right:20px;width:160px;height:160px;background:linear-gradient(135deg,#FEF9C3,#FEF08A);border-radius:50%;opacity:0.5;z-index:0;"></div>
         <div style="position:relative;z-index:1;text-align:center;">
-          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/illustration-4.png" alt="チームミーティングのイラスト" style="max-width:100%;height:auto;max-height:480px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(3,105,161,0.12));" loading="lazy">
+          <picture>
+            <source srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/illustration-4.webp" type="image/webp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/illustration-4.png" alt="チームミーティングのイラスト" width="911" height="730" style="max-width:100%;height:auto;max-height:480px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(3,105,161,0.12));" loading="lazy">
+          </picture>
         </div>
       </div>
       <div>

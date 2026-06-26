@@ -80,6 +80,34 @@ function aoibase_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'aoibase_enqueue_assets' );
 
 // -----------------------------------------------------------------------
+// Non-render-blocking Google Fonts
+// -----------------------------------------------------------------------
+
+function aoibase_async_google_fonts( $tag, $handle ) {
+	if ( 'aoibase-google-fonts' === $handle ) {
+		$tag = str_replace(
+			"media='all'",
+			"media='print' onload=\"this.media='all'\"",
+			$tag
+		);
+		$tag .= '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>' . "\n";
+	}
+	return $tag;
+}
+add_filter( 'style_loader_tag', 'aoibase_async_google_fonts', 10, 2 );
+
+// -----------------------------------------------------------------------
+// Remove unused WordPress block styles
+// -----------------------------------------------------------------------
+
+function aoibase_dequeue_block_styles() {
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'global-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'aoibase_dequeue_block_styles', 100 );
+
+// -----------------------------------------------------------------------
 // Restrict Contact Form 7 assets to contact page only
 // -----------------------------------------------------------------------
 
