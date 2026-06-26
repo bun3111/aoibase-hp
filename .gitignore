@@ -21,5 +21,8 @@ desktop.ini
 .vscode/
 .idea/
 
+# Node.js
+node_modules/
+
 # Playwright MCP artifacts
 .playwright-mcp/
