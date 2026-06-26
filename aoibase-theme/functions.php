@@ -101,6 +101,9 @@ add_filter( 'style_loader_tag', 'aoibase_async_google_fonts', 10, 2 );
 // -----------------------------------------------------------------------
 
 function aoibase_dequeue_block_styles() {
+	if ( ! is_front_page() ) {
+		return;
+	}
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );
 	wp_dequeue_style( 'global-styles' );
