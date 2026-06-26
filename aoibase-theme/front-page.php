@@ -82,7 +82,9 @@
 <section id="hero" class="relative w-full overflow-hidden">
   <h1 class="sr-only">AOi Base - Web・アプリ・システム開発</h1>
   <picture>
-    <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.png">
+    <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.webp" type="image/webp">
+    <source media="(min-width: 1024px)" srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-pc.png" type="image/png">
+    <source srcset="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.webp" type="image/webp">
     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/hero-main-sp.png" alt="AOi Base" class="w-full h-auto block" loading="eager">
   </picture>
   <div class="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-2">
