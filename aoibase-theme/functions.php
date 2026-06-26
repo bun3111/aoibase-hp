@@ -81,6 +81,18 @@ function aoibase_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'aoibase_enqueue_assets' );
 
 // -----------------------------------------------------------------------
+// Restrict Contact Form 7 assets to contact page only
+// -----------------------------------------------------------------------
+
+function aoibase_dequeue_cf7_assets() {
+	if ( ! is_page( 'contact' ) ) {
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'contact-form-7' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'aoibase_dequeue_cf7_assets', 20 );
+
+// -----------------------------------------------------------------------
 // Disable WordPress Emoji Scripts
 // -----------------------------------------------------------------------
 

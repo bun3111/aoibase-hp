@@ -133,17 +133,6 @@ $has_genres = ! is_wp_error( $genres ) && ! empty( $genres );
   }
 </style>
 
-<script type="application/ld+json">
-<?php echo wp_json_encode( array(
-    '@context'        => 'https://schema.org',
-    '@type'           => 'BreadcrumbList',
-    'itemListElement' => array(
-        array( '@type' => 'ListItem', 'position' => 1, 'name' => 'TOP', 'item' => home_url( '/' ) ),
-        array( '@type' => 'ListItem', 'position' => 2, 'name' => '開発事例', 'item' => home_url( '/portfolio/' ) ),
-    ),
-), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
-</script>
-
 <!-- ===== PAGE HEADER ===== -->
 <section class="relative pt-32 pb-16 bg-white border-b border-[#E2E8F0] overflow-hidden">
   <div class="absolute inset-x-0 top-20 pointer-events-none select-none text-center">
