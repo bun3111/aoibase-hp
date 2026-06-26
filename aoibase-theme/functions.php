@@ -97,20 +97,6 @@ function aoibase_async_google_fonts( $tag, $handle ) {
 add_filter( 'style_loader_tag', 'aoibase_async_google_fonts', 10, 2 );
 
 // -----------------------------------------------------------------------
-// Remove unused WordPress block styles
-// -----------------------------------------------------------------------
-
-function aoibase_dequeue_block_styles() {
-	if ( ! is_front_page() ) {
-		return;
-	}
-	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_dequeue_style( 'global-styles' );
-}
-add_action( 'wp_enqueue_scripts', 'aoibase_dequeue_block_styles', 100 );
-
-// -----------------------------------------------------------------------
 // Restrict Contact Form 7 assets to contact page only
 // -----------------------------------------------------------------------
 
