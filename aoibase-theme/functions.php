@@ -85,9 +85,9 @@ add_action( 'wp_enqueue_scripts', 'aoibase_enqueue_assets' );
 
 function aoibase_async_google_fonts( $tag, $handle ) {
 	if ( 'aoibase-google-fonts' === $handle ) {
-		$tag = str_replace(
-			"media='all'",
-			"media='print' onload=\"this.media='all'\"",
+		$tag = preg_replace(
+			'/media=[\'"]all[\'"]/',
+			'media="print" onload="this.media=\'all\'"',
 			$tag
 		);
 		$tag .= '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>' . "\n";
