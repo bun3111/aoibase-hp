@@ -259,7 +259,7 @@ $has_block_content = ! empty( trim( $post->post_content ) );
 		array( '@type' => 'ListItem', 'position' => 2, 'name' => '開発事例', 'item' => $portfolio_url ),
 		array( '@type' => 'ListItem', 'position' => 3, 'name' => get_the_title(), 'item' => get_permalink() ),
 	),
-), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
+), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG ); ?>
 </script>
 
 <!-- ===== PAGE HEADER ===== -->
