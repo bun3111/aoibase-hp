@@ -38,7 +38,7 @@ $news_url = home_url( '/news/' );
         array( '@type' => 'ListItem', 'position' => 2, 'name' => 'NEWS', 'item' => $news_url ),
         array( '@type' => 'ListItem', 'position' => 3, 'name' => get_the_title(), 'item' => get_permalink() ),
     ),
-), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
+), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG ); ?>
 </script>
 
 <!-- ===== PAGE HEADER ===== -->

@@ -242,7 +242,7 @@ function aoibase_jsonld_organization() {
 		'sameAs'        => array(),
 	);
 
-	$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG );
 
 	echo '<script type="application/ld+json">' . "\n";
 	echo $json . "\n";
@@ -301,7 +301,7 @@ function aoibase_jsonld_service() {
 		),
 	);
 
-	$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	$json = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG );
 
 	echo '<script type="application/ld+json">' . "\n";
 	echo $json . "\n";
